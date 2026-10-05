@@ -1,0 +1,150 @@
+# Feature Specification: {{FEATURE_NAME}}
+
+**Feature Branch**: `[{{FEATURE_BRANCH}}]`
+
+**Created**: {{CREATED_DATE}}
+
+**Status**: {{SPEC_STATUS}}
+
+**Input**: User description: "{{USER_DESCRIPTION}}"
+
+## Clarifications
+
+### Session {{CLARIFICATION_SESSION_DATE}}
+
+- Q: {{CLARIFICATION_QUESTION_1}}? -> A: {{CLARIFICATION_ANSWER_1}}
+- Q: {{CLARIFICATION_QUESTION_2}}? -> A: {{CLARIFICATION_ANSWER_2}}
+- Q: {{CLARIFICATION_QUESTION_3}}? -> A: {{CLARIFICATION_ANSWER_3}}
+
+## User Scenarios & Testing
+
+### User Story 1 - {{USER_STORY_1_TITLE}} (Priority: P1)
+
+{{USER_STORY_1_DESCRIPTION}}
+
+**Why this priority**: {{USER_STORY_1_PRIORITY_REASON}}
+
+**Independent Test**: {{USER_STORY_1_INDEPENDENT_TEST}}
+
+**Acceptance Criteria**:
+
+1. **Given** {{USER_STORY_1_SCENARIO_1_GIVEN}}, **When** {{USER_STORY_1_SCENARIO_1_WHEN}}, **Then** {{USER_STORY_1_SCENARIO_1_THEN}}.
+2. **Given** {{USER_STORY_1_SCENARIO_2_GIVEN}}, **When** {{USER_STORY_1_SCENARIO_2_WHEN}}, **Then** {{USER_STORY_1_SCENARIO_2_THEN}}.
+3. **Given** {{USER_STORY_1_SCENARIO_3_GIVEN}}, **When** {{USER_STORY_1_SCENARIO_3_WHEN}}, **Then** {{USER_STORY_1_SCENARIO_3_THEN}}.
+
+**Functional Requirements**:
+
+- **FR-001**: {{FUNCTIONAL_REQUIREMENT_001}}
+- **FR-002**: {{FUNCTIONAL_REQUIREMENT_002}}
+- **FR-003**: {{FUNCTIONAL_REQUIREMENT_003}}
+- **FR-004**: {{FUNCTIONAL_REQUIREMENT_004}}
+- **FR-005**: {{FUNCTIONAL_REQUIREMENT_005}}
+
+**Non-Functional Requirements**:
+
+- **NFR-001**: {{NON_FUNCTIONAL_REQUIREMENT_001}}
+- **NFR-002**: {{NON_FUNCTIONAL_REQUIREMENT_002}}
+
+---
+
+### User Story 2 - {{USER_STORY_2_TITLE}} (Priority: P2)
+
+{{USER_STORY_2_DESCRIPTION}}
+
+**Why this priority**: {{USER_STORY_2_PRIORITY_REASON}}
+
+**Independent Test**: {{USER_STORY_2_INDEPENDENT_TEST}}
+
+**Acceptance Criteria**:
+
+1. **Given** {{USER_STORY_2_SCENARIO_1_GIVEN}}, **When** {{USER_STORY_2_SCENARIO_1_WHEN}}, **Then** {{USER_STORY_2_SCENARIO_1_THEN}}.
+2. **Given** {{USER_STORY_2_SCENARIO_2_GIVEN}}, **When** {{USER_STORY_2_SCENARIO_2_WHEN}}, **Then** {{USER_STORY_2_SCENARIO_2_THEN}}.
+3. **Given** {{USER_STORY_2_SCENARIO_3_GIVEN}}, **When** {{USER_STORY_2_SCENARIO_3_WHEN}}, **Then** {{USER_STORY_2_SCENARIO_3_THEN}}.
+
+**Functional Requirements**:
+
+- **FR-006**: {{FUNCTIONAL_REQUIREMENT_006}}
+- **FR-007**: {{FUNCTIONAL_REQUIREMENT_007}}
+- **FR-008**: {{FUNCTIONAL_REQUIREMENT_008}}
+
+**Non-Functional Requirements**:
+
+- **NFR-003**: {{NON_FUNCTIONAL_REQUIREMENT_003}}
+- **NFR-004**: {{NON_FUNCTIONAL_REQUIREMENT_004}}
+
+---
+
+### User Story 3 - {{USER_STORY_3_TITLE}} (Priority: P3)
+
+{{USER_STORY_3_DESCRIPTION}}
+
+**Why this priority**: {{USER_STORY_3_PRIORITY_REASON}}
+
+**Independent Test**: {{USER_STORY_3_INDEPENDENT_TEST}}
+
+**Acceptance Criteria**:
+
+1. **Given** {{USER_STORY_3_SCENARIO_1_GIVEN}}, **When** {{USER_STORY_3_SCENARIO_1_WHEN}}, **Then** {{USER_STORY_3_SCENARIO_1_THEN}}.
+2. **Given** {{USER_STORY_3_SCENARIO_2_GIVEN}}, **When** {{USER_STORY_3_SCENARIO_2_WHEN}}, **Then** {{USER_STORY_3_SCENARIO_2_THEN}}.
+3. **Given** {{USER_STORY_3_SCENARIO_3_GIVEN}}, **When** {{USER_STORY_3_SCENARIO_3_WHEN}}, **Then** {{USER_STORY_3_SCENARIO_3_THEN}}.
+4. **Given** {{USER_STORY_3_SCENARIO_4_GIVEN}}, **When** {{USER_STORY_3_SCENARIO_4_WHEN}}, **Then** {{USER_STORY_3_SCENARIO_4_THEN}}.
+
+**Functional Requirements**:
+
+- **FR-009**: {{FUNCTIONAL_REQUIREMENT_009}}
+- **FR-010**: {{FUNCTIONAL_REQUIREMENT_010}}
+
+**Non-Functional Requirements**:
+
+- **NFR-005**: {{NON_FUNCTIONAL_REQUIREMENT_005}}
+- **NFR-006**: {{NON_FUNCTIONAL_REQUIREMENT_006}}
+
+---
+
+### Edge Cases
+
+- {{EDGE_CASE_1}}
+- {{EDGE_CASE_2}}
+- {{EDGE_CASE_3}}
+- {{EDGE_CASE_4}}
+- {{EDGE_CASE_5}}
+- {{EDGE_CASE_6}}
+
+## Global Requirements
+
+### Global Functional Requirements
+
+- **GFR-001**: {{GLOBAL_FUNCTIONAL_REQUIREMENT_001}}
+- **GFR-002**: {{GLOBAL_FUNCTIONAL_REQUIREMENT_002}}
+- **GFR-003**: {{GLOBAL_FUNCTIONAL_REQUIREMENT_003}}
+
+### Global Non-Functional Requirements
+
+- **GNFR-001**: {{GLOBAL_NON_FUNCTIONAL_REQUIREMENT_001}}
+- **GNFR-002**: {{GLOBAL_NON_FUNCTIONAL_REQUIREMENT_002}}
+
+### Key Entities
+
+- **{{ENTITY_1_NAME}}**: {{ENTITY_1_DESCRIPTION}}
+- **{{ENTITY_2_NAME}}**: {{ENTITY_2_DESCRIPTION}}
+- **{{ENTITY_3_NAME}}**: {{ENTITY_3_DESCRIPTION}}
+- **{{ENTITY_4_NAME}}**: {{ENTITY_4_DESCRIPTION}}
+
+## Success Criteria
+
+### Measurable Outcomes
+
+- **SC-001**: {{SUCCESS_CRITERION_001}}
+- **SC-002**: {{SUCCESS_CRITERION_002}}
+- **SC-003**: {{SUCCESS_CRITERION_003}}
+- **SC-004**: {{SUCCESS_CRITERION_004}}
+- **SC-005**: {{SUCCESS_CRITERION_005}}
+- **SC-006**: {{SUCCESS_CRITERION_006}}
+
+## Assumptions
+
+- {{ASSUMPTION_1}}
+- {{ASSUMPTION_2}}
+- {{ASSUMPTION_3}}
+- {{ASSUMPTION_4}}
+- {{ASSUMPTION_5}}
