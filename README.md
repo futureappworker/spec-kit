@@ -19,6 +19,7 @@ Skills 放在 `.agents/skills/`。每個 Skill 的入口是該目錄下的 `SKIL
 
 | Skill | 做什麼 |
 | --- | --- |
+| [artifact-to-skill-engineering](.agents/skills/artifact-to-skill-engineering/SKILL.md) | 從使用者確認滿意的 Artifact Example 出發，先客製化範例，再委派 `skill-form-template` 倒抽 Template，最後交給 `skill-engineering` 反推可穩定產出該 Artifact 的目標 Skill。 |
 | [skill-engineering](.agents/skills/skill-engineering/SKILL.md) | 編排整次建立或優化。新建時先定用途與邊界，再交給 `skill-form-sop` 寫出最小可執行 SOP。優化時先做根因分析，等確認後才改寫。接著決定哪些步驟留在 SOP、哪些要拆成 Rule、Template 或 Script，並刪掉不再被載入的過時模組。 |
 
 ### 撰寫與檢查
