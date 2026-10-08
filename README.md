@@ -12,6 +12,7 @@ Skills 放在 `.agents/skills/`。每個 Skill 的入口是該目錄下的 `SKIL
 | --- | --- |
 | [specify](.agents/skills/specify/SKILL.md) | 把自然語言需求推成結構完整、可驗證的 Feature Specification，寫入 `specs/<NNN>-<feature-slug>/spec.md`。內容涵蓋 User Stories、驗收條件、功能與非功能需求、邊界情況與成功標準。規格若仍有核心缺口，Status 為 `Needs Clarification`，並交給 `clarify` 提問。 |
 | [clarify](.agents/skills/clarify/SKILL.md) | 針對既有規格的核心不確定處工作。提問模式最多提出三個澄清問題；套用模式把使用者的回答回寫進同一份 spec，並同步受影響章節與狀態，使規格可以進入後續 planning。 |
+| [technical-research](.agents/skills/technical-research/SKILL.md) | 在 `/specify` 產出的 Feature Specification 之後執行，將可進入 planning 的規格推導成 `research.md` 與 `techstack.md`。`research.md` 聚焦技術決策、理由與替代方案；`techstack.md` 彙整採用、延後或不採用的技術堆疊與 planning 約束。 |
 
 ## Skill 工程
 
