@@ -1,0 +1,34 @@
+---
+name: tasks
+description: 將 Feature Specification 與 plan.md 的系統介面盤點轉成可由上往下執行的 tasks.md；每個任務只掛本端點契約的一個部位。
+---
+
+# SOP
+
+## Phase 1: 讀取輸入
+
+1. Read 讀取使用者輸入並取得目標功能目錄、既有 tasks.md 與本次是建立或更新。
+2. Think 決定任務清單路徑為該功能 `plan.md` 所在目錄的 `tasks.md`。
+
+## Phase 2: 對齊故事與端點
+
+1. Read 讀取目標功能的 `spec.md` 並取得使用者故事、優先級與可測試行為。
+2. Read 讀取目標功能的 `plan.md` 並取得系統介面盤點、產出契約與原始碼落地位置。
+3. Read 讀取目標功能的 `techstack.md` 採用技術表並取得 Setup 與環境任務要引用的 Area。
+4. Read 讀取 plan.md「產出契約」列出的契約檔並取得 schema 名稱、Table 名稱與 frame id。
+5. Read [任務清單輸出規範](rules/任務清單輸出規範.md)並取得輸出位置、端點層級、任務位址與測試順序要求。
+6. Think 依已載入規範決定每則使用者故事的端點落點，以及每個任務要掛的單一契約部位。
+
+## Phase 3: 撰寫任務清單
+
+1. Read [Tasks 骨架](templates/tasks.md)並取得任務清單的固定欄位與階段結構。
+2. Read [Tasks 範例](templates/tasks.example.md)並取得已確認任務清單的填寫方式。
+3. Write 依已載入規範與樣板，將任務清單寫入 Phase 1 決定的 `tasks.md`。
+
+## Phase 4: 檢查任務清單
+
+1. Read 依已載入規範檢查目標 `tasks.md` 是否照抄範例任務、缺少端點層級、任務沒有部位位址、位址跨端，或測試排在實作之後，並列出不符合項目。
+
+## Phase 5: 修正任務清單
+
+1. Write 修正目標 `tasks.md` 中全部不符合已載入規範與樣板結構的項目。
