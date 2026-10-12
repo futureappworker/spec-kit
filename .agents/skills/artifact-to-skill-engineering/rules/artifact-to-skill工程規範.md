@@ -28,8 +28,8 @@ Target Artifact Type: 未決定
 - Artifact Example 必須先依使用者客製化需求修改到使用者明確滿意，才可以委派 `skill-form-template`。
 - 使用者尚未確認 Artifact Example 滿意時，必須停在客製化或確認回合。
 - Artifact Example 的格式、章節、欄位、命名與範例內容仍在變動時，不得建立 Template 骨架。
-- `/clarify` 只可以用於 Feature Specification 類 Artifact 的核心規格澄清。
-- 一般 Artifact 的格式、章節、欄位、語氣與範例內容確認不得委派給 `/clarify`。
+- `/clarify` 可以用於會影響目標 Artifact 契約、Skill 用途、輸入情境、品質邊界或後續工程路徑的核心不確定處。
+- 一般 Artifact 的表面格式、章節命名、欄位語氣與範例措辭偏好不得委派給 `/clarify`，除非該問題會改變可重複產出的 Artifact 契約。
 - AI 不得把自己推測的滿意版本當成使用者確認。
 
 ## Good Example

@@ -1,19 +1,19 @@
 ---
 name: clarify
-description: 針對既有 Feature Specification 的核心不確定處產生澄清問題，或將使用者回答回寫到 spec，使規格可進入後續 planning。
+description: 針對任何任務、Artifact 或決策中的核心不確定處產生澄清問題，或將使用者回答套用回目標內容，使後續工作可繼續推進。
 ---
 
 # SOP
 
-## Phase 1: 讀取規格與輸入
+## Phase 1: 讀取輸入與目標
 
-1. Read 讀取使用者輸入並取得目標 Feature Specification 位置、澄清意圖與使用者提供的回答。
-2. Read 讀取目標 Feature Specification 並取得 Feature metadata、Clarifications、User Stories、Requirements、Edge Cases、Success Criteria 與 Assumptions。
+1. Read 讀取使用者輸入並取得澄清意圖、目標任務或 Artifact、可用上下文、目標檔案位置與使用者提供的回答。
+2. Read 當使用者提供目標檔案時，讀取目標檔案並取得其目的、狀態、既有澄清紀錄、決策點、需求、假設與未解缺口。
 
 ## Phase 2: 判斷澄清模式
 
 1. Read [Clarification 品質規範](rules/clarification品質規範.md)並取得提問、套用答案、同步更新與完成判定要求。
-2. Think 依已載入規範決定本次執行為提問模式或套用模式。
+2. Think 依已載入規範決定本次執行為提問模式、套用模式或決策摘要模式。
 
 ## Phase 3: 產生澄清問題
 
@@ -24,13 +24,14 @@ description: 針對既有 Feature Specification 的核心不確定處產生澄�
 
 ## Phase 4: 套用澄清答案
 
-1. Think 當本次執行為套用模式時，依已載入規範決定每個回答影響的 spec 章節。
-2. Write 當本次執行為套用模式時，將澄清答案、受影響章節與規格狀態寫入目標 Feature Specification。
+1. Think 當本次執行為套用模式時，依已載入規範決定每個回答影響的目標內容、章節、假設、狀態與後續工作邊界。
+2. Write 當本次執行為套用模式且存在目標檔案時，將澄清答案、受影響內容與完成狀態寫入目標檔案。
+3. Write 當本次執行為套用模式且不存在目標檔案時，將已確認決策、剩餘缺口與後續可執行邊界寫入回覆 Artifact。
 
-## Phase 5: 檢查規格一致性
+## Phase 5: 檢查澄清一致性
 
-1. Read 依已載入規範檢查目標 Feature Specification 是否仍有未處理核心缺口、矛盾需求、過時 Assumptions 或不同步章節。
+1. Read 依已載入規範檢查目標檔案或回覆 Artifact 是否仍有未處理核心缺口、矛盾決策、過時假設或不同步內容。
 
-## Phase 6: 修正規格一致性
+## Phase 6: 修正澄清一致性
 
-1. Write 修正目標 Feature Specification 中全部不符合已載入規範的澄清、一致性與狀態問題。
+1. Write 修正目標檔案或回覆 Artifact 中全部不符合已載入規範的澄清、一致性與狀態問題。
