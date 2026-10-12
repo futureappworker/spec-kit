@@ -4,6 +4,8 @@
 - 不影響核心決策且可以保守推導的缺口必須寫入 Assumptions、Notes 或回覆 Artifact 的未阻塞事項。
 - Clarification 不得詢問不影響後續執行的偏好細節、可逆的表面樣式、內部實作細節或可由後續階段自然決定的內容。
 - 每次提問模式最多必須輸出三個 Clarification，且必須依影響排序。
+- 輸出題數必須依核心缺口決定。
+- 輸出題數不得依 Template 範例中的題數決定。
 
 ## Good Example
 
@@ -31,20 +33,50 @@
 
 # Rule 2 - 澄清問題必須具體且可回答
 
-- 每個 Clarification 必須包含 Context、What we need to know、Suggested Answers 與 Your choice。
+- 每個 Clarification 必須包含 Context、What we need to know、Suggested Answers、推薦與 Your choice。
 - Context 必須引用或摘要使用者輸入、目標檔案或既有 Artifact 中造成不確定的內容。
 - What we need to know 必須是一個具體問題。
-- Suggested Answers 必須提供 A、B、C 與 Custom 四個選項。
+- Suggested Answers 必須提供 A、B、C 與 Custom 四個選項，且必須包含推薦欄。
+- 四個選項中必須恰好有一個選項的推薦欄標為「推薦」。
+- 其餘選項的推薦欄必須留空。
+- 推薦不得成為 A、B、C、Custom 以外的第五個選項。
 - 每個選項必須說明對目標任務、Artifact、決策或後續工作的影響。
+- 推薦必須寫出被標為「推薦」的選項與其理由，且必須放在 Your choice 之前。
+- Your choice 必須讓使用者回覆 A、B、C 或 Custom。
 
 ## Good Example
 
-- 問題有上下文、具體決策點、可選答案與每個答案的影響。
+- 同一題包含上下文、四個選項、恰好一個推薦與推薦理由，使用者仍可改選其他選項。
 
 ```markdown
-## Question 1: 輸出形式
+## Question 1: 交付形式
 
-**Context**: 使用者要求「產出分析結果」，但沒有指定結果要直接回覆、寫入文件或建立 Canvas。
+**Context**: 使用者要求產出一份分析結果，但尚未指定結果應直接回覆、寫入文件或建立互動 Canvas。
+
+**What we need to know**: 本次分析結果應該以哪種形式交付?
+
+**Suggested Answers**:
+
+| Option | Answer | Implications | 推薦 |
+|--------|--------|--------------|------|
+| A | 直接在回覆中提供摘要 | 不建立新檔案，適合一次性決策或簡短結果 | |
+| B | 寫入指定 Markdown 文件 | 產生可追蹤 Artifact，後續可維護與審查 | 推薦 |
+| C | 建立 Canvas | 適合資料量大、需要視覺布局或互動探索的結果 | |
+| Custom | 使用者提供其他交付方式 | 依使用者答案調整輸出形式與後續步驟 | |
+
+**推薦**: B — 產生可追蹤 Artifact，後續可維護與審查。
+
+**Your choice**: _請回覆 Q1: A/B/C 或 Custom - 你的答案_
+```
+
+## Bad Example
+
+- 同一題保留了四個選項，但沒有推薦欄與推薦理由。
+
+````markdown
+## Question 1: 交付形式
+
+**Context**: 使用者要求產出一份分析結果，但尚未指定結果應直接回覆、寫入文件或建立互動 Canvas。
 
 **What we need to know**: 本次分析結果應該以哪種形式交付?
 
@@ -52,25 +84,13 @@
 
 | Option | Answer | Implications |
 |--------|--------|--------------|
-| A | 直接在回覆中提供摘要 | 不建立新檔案，適合一次性決策 |
-| B | 寫入指定文件 | 產生可追蹤 Artifact，後續可維護 |
-| C | 建立 Canvas | 適合資料量大、需要互動視覺化的結果 |
-| Custom | 使用者提供其他交付方式 | 依使用者答案調整輸出與後續步驟 |
+| A | 直接在回覆中提供摘要 | 不建立新檔案，適合一次性決策或簡短結果 |
+| B | 寫入指定 Markdown 文件 | 產生可追蹤 Artifact，後續可維護與審查 |
+| C | 建立 Canvas | 適合資料量大、需要視覺布局或互動探索的結果 |
+| Custom | 使用者提供其他交付方式 | 依使用者答案調整輸出形式與後續步驟 |
 
 **Your choice**: _請回覆 Q1: A/B/C 或 Custom - 你的答案_
-```
-
-## Bad Example
-
-- 問題沒有明確上下文與選項影響，使用者難以知道回答會改變什麼。
-
-```markdown
-## Question 1
-
-輸出怎麼辦?
-
-A/B/C?
-```
+````
 
 # Rule 3 - 提問排序必須依風險與影響
 
@@ -205,3 +225,75 @@ A/B/C?
 回寫到 Skill 需求：
 - Skill 必須建立 `scripts/check_template.py` 並在每次執行時呼叫。
 ```
+
+# Rule 7 - mermaid 只描述需要看圖的問題情境
+
+- 當 Clarification 所問的情境包含流程、狀態、關係或結構，且缺少該情境的圖就無法判斷問題範圍時，該題必須在 Suggested Answers 之前加入 mermaid 圖。
+- 該 mermaid 圖必須只描述被詢問的情境。
+- mermaid 圖不得描繪 Suggested Answers 的選項、推薦或影響分支。
+- 當 Context 與 What we need to know 已足以判斷問題範圍時，該題不得加入 mermaid 圖。
+
+## Good Example
+
+- 問題在問介面分析要插入既有流程的哪裡，圖只畫出被詢問的流程，選項留在表格。
+
+````markdown
+## Question 1: 介面分析插入點
+
+**Context**: 規格完成後進入技術研究，研究完成後才做系統分析規劃。使用者要釐清介面分析插在這段流程的哪裡。
+
+**What we need to know**: 介面分析應該接在哪一個既有階段後面?
+
+```mermaid
+flowchart LR
+  spec[Feature Specification] --> research[Technical Research]
+  research --> plan[系統分析規劃]
+```
+
+**Suggested Answers**:
+
+| Option | Answer | Implications | 推薦 |
+|--------|--------|--------------|------|
+| A | 接在 Feature Specification 之後 | 介面分析早於技術研究，研究無法約束介面範圍 | |
+| B | 接在 Technical Research 之後 | 研究結果先約束介面範圍，再進入系統分析規劃 | 推薦 |
+| C | 與系統分析規劃同時進行 | 介面與整體規劃一起變動，插入點不再單獨決定 | |
+| Custom | 使用者提供其他插入位置 | 依使用者答案調整流程邊界 | |
+
+**推薦**: B — 研究結果先約束介面範圍，再進入系統分析規劃。
+
+**Your choice**: _請回覆 Q1: A/B/C 或 Custom - 你的答案_
+````
+
+## Bad Example
+
+- 同一題改把 A、B、C 畫成流程圖，沒有畫出被詢問的規格、研究與規劃流程。
+
+````markdown
+## Question 1: 介面分析插入點
+
+**Context**: 規格完成後進入技術研究，研究完成後才做系統分析規劃。使用者要釐清介面分析插在這段流程的哪裡。
+
+**What we need to know**: 介面分析應該接在哪一個既有階段後面?
+
+```mermaid
+flowchart TD
+  Q[介面分析應該接在哪一個既有階段後面?]
+  Q --> A[A 接在 Feature Specification 之後]
+  Q --> B[B 接在 Technical Research 之後]
+  Q --> C[C 與系統分析規劃同時進行]
+  Q --> Custom[Custom 其他插入位置]
+```
+
+**Suggested Answers**:
+
+| Option | Answer | Implications | 推薦 |
+|--------|--------|--------------|------|
+| A | 接在 Feature Specification 之後 | 介面分析早於技術研究，研究無法約束介面範圍 | |
+| B | 接在 Technical Research 之後 | 研究結果先約束介面範圍，再進入系統分析規劃 | 推薦 |
+| C | 與系統分析規劃同時進行 | 介面與整體規劃一起變動，插入點不再單獨決定 | |
+| Custom | 使用者提供其他插入位置 | 依使用者答案調整流程邊界 | |
+
+**推薦**: B — 研究結果先約束介面範圍，再進入系統分析規劃。
+
+**Your choice**: _請回覆 Q1: A/B/C 或 Custom - 你的答案_
+````
