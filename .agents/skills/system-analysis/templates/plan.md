@@ -29,5 +29,6 @@
 ### 分析流程安排
 
 後續系統分析會依照需求依賴程度分成多個 Wave。每個 Wave 裡只放技術端點，不放實際分析結果；同一個 Wave 內的端點代表可以平行開 Sub-agent，並委派給對應的小 Skill 執行後續介面分析。
+每個端點會列出具名 Planner Skill，供後續 Wave 執行時委派。
 
 {{ANALYSIS_WAVES}}
