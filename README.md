@@ -13,7 +13,10 @@ Skills 放在 `.agents/skills/`。每個 Skill 的入口是該目錄下的 `SKIL
 | [specify](.agents/skills/specify/SKILL.md) | 把自然語言需求推成結構完整、可驗證的 Feature Specification，寫入 `specs/<NNN>-<feature-slug>/spec.md`。內容涵蓋 User Stories、驗收條件、功能與非功能需求、邊界情況與成功標準。規格若仍有核心缺口，Status 為 `Needs Clarification`，並交給 `clarify` 提問。 |
 | [clarify](.agents/skills/clarify/SKILL.md) | 針對任何任務、Artifact 或決策中的核心不確定處工作。提問模式最多提出三個高影響澄清問題；套用模式會把使用者回答同步回目標檔案，或在沒有目標檔案時輸出已確認決策、剩餘缺口與後續可執行邊界。 |
 | [technical-research](.agents/skills/technical-research/SKILL.md) | 在 `/specify` 產出的 Feature Specification 之後執行，將可進入 planning 的規格推導成 `research.md` 與 `techstack.md`。`research.md` 聚焦技術決策、理由與替代方案；`techstack.md` 彙整採用、延後或不採用的技術堆疊與 planning 約束。 |
-| [system-analysis](.agents/skills/system-analysis/SKILL.md) | 依 Feature Specification 或使用者需求產出 `plan.md` 中的系統分析規劃。先盤點需求涉及的技術端點與系統介面（名稱、端點類型、需求依據），再依依賴關係排成可平行委派的分析 Wave，並描述專案文件與原始碼結構及 Structure Decision。 |
+| [system-analysis](.agents/skills/system-analysis/SKILL.md) | 依 Feature Specification、同目錄 `research.md` 與 `techstack.md` 產出並執行 `plan.md` 中的系統分析規劃。先盤點技術端點與系統介面，再依依賴關係排成分析 Wave，並委派 `ui-ux-plan`、`api-plan`、`data-plan` 完成對應介面分析。 |
+| [ui-ux-plan](.agents/skills/ui-ux-plan/SKILL.md) | 分析前端端點、瀏覽器互動、畫面狀態與使用者流程，依 Pencil 樣板 `templates/interface.pen` 產出可供 API 與資料規劃對齊的 UI/UX 介面分析。 |
+| [api-plan](.agents/skills/api-plan/SKILL.md) | 分析後端端點、API、WebSocket、服務狀態機與權威判定邊界，依 OpenAPI 樣板 `templates/openapi.yaml` 產出可供前端與資料規劃對齊的 API 介面分析。 |
+| [data-plan](.agents/skills/data-plan/SKILL.md) | 分析資料庫端點、持久化模型、查詢、快照與資料保留邊界，依 DBML 樣板 `templates/schema.dbml` 產出可供前端與 API 規劃對齊的資料介面分析。 |
 
 ## Skill 工程
 
