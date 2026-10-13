@@ -38,9 +38,6 @@
 - 當未回答缺口會改變功能範圍、資料歸屬、使用者旅程、驗收結果、安全隱私要求或後續 planning 邊界時，Spec 狀態必須設為 `Needs Clarification`。
 - 當 Spec 狀態為 `Needs Clarification` 時，`specify` 必須產生只含明確資訊的初稿。
 - `specify` 不得自行產生澄清問題的最終答案。
-- `specify` 不得委派 `clarify`。
-- 使用者明確要求對本次規格做專業需求澄清時，`specify` 必須在規格與 checklist 寫入完成後委派 `clarify-over-specs`。
-- 使用者沒有要求專業需求澄清時，`specify` 不得委派 `clarify-over-specs`。
 - 不影響核心規格的 UI 細節、實作技術與 planning 階段決策不得阻塞 `specify`。
 
 ## Good Example

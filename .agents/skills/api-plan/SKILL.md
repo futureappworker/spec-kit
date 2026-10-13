@@ -32,12 +32,18 @@ metadata:
 
 1. Read [OpenAPI 骨架](templates/openapi.yaml)並取得固定內容結構。
 2. Read [OpenAPI 範例](templates/openapi.example.yaml)並取得完整使用方式。
-3. Write 依已載入樣板與範例將 API 介面分析寫入目標 OpenAPI 檔案。
+3. Read [產出覆蓋規範](../constitution/rules/產出覆蓋規範.md)並取得憲法讀取時機、點名部位優先順序與停止寫入條件。
+4. Read 若存在，讀取 `constitution/共同/憲法套用規範.md`，取得專案套用規則；檔案不存在時，專案套用規則為空。
+5. Read 若存在，讀取 `constitution/api-plan/openapi.yaml.md`，取得 OpenAPI 的憲法 Rule；檔案不存在時，憲法 Rule 為空。
+6. Think 依已載入規範決定本次是否停止寫入。
+7. Write 當決定停止寫入時，將拒絕原因寫入回覆。
+8. Think 當決定停止寫入時，決定本次流程停止於拒絕原因。
+9. Write 當決定寫入時，依已載入樣板與範例與已載入的憲法 Rule 將 API 介面分析寫入目標 OpenAPI 檔案。
 
 ## Phase 4: 檢查 API 介面分析
 
-1. Read 檢查 API 介面分析是否保留需求追溯、涵蓋入口事件、回應或推送資料、服務判定、狀態轉換、資料依賴與待澄清缺口。
+1. Read 依已載入規範與已載入的憲法 Rule 檢查 API 介面分析是否保留需求追溯、涵蓋入口事件、回應或推送資料、服務判定、狀態轉換、資料依賴、待澄清缺口與憲法通過條件，並列出不符合項目。
 
 ## Phase 5: 修正 API 介面分析
 
-1. Write 修正 API 介面分析中可由既有資訊處理的全部不符合項目。
+1. Write 修正 API 介面分析中可由既有資訊處理的全部不符合已載入規範與已載入的憲法 Rule 的項目。

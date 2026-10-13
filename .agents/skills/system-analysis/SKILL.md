@@ -47,7 +47,13 @@ metadata:
 
 ## Phase 4: 撰寫 plan.md
 
-1. Write 依已載入樣板與範例將系統分析規劃寫入目標 `plan.md`。
+1. Read [產出覆蓋規範](../constitution/rules/產出覆蓋規範.md)並取得憲法讀取時機、點名部位優先順序與停止寫入條件。
+2. Read 若存在，讀取 `constitution/共同/憲法套用規範.md`，取得專案套用規則；檔案不存在時，專案套用規則為空。
+3. Read 若存在，讀取 `constitution/system-analysis/plan.md`，取得 `plan.md` 的憲法 Rule；檔案不存在時，憲法 Rule 為空。
+4. Think 依已載入規範決定本次是否停止寫入 `plan.md`。
+5. Write 當決定停止寫入時，將拒絕原因寫入回覆。
+6. Think 當決定停止寫入時，決定本次流程停止於拒絕原因。
+7. Write 當決定寫入時，依已載入樣板與範例與已載入的憲法 Rule 將系統分析規劃寫入目標 `plan.md`。
 
 ## Phase 5: 執行分析 Wave
 
@@ -59,14 +65,15 @@ metadata:
 ## Phase 6: 收斂介面分析結果
 
 1. Think 彙整各 Planner Skill 的介面分析結果，取得跨介面依賴、衝突、待澄清缺口與可進入後續 planning 的結論。
-2. Write 將介面分析結果與剩餘缺口寫入使用者指定的目標檔案或回覆 Artifact。
+2. Write 將跨介面依賴、衝突與剩餘缺口寫入目標 `plan.md` 或回覆，並依已載入的憲法 Rule 維護 `plan.md` 被點名的部位。
+3. Delegate 當介面契約需要修改時，將缺口交給擁有該契約的 `ui-ux-plan`、`api-plan` 或 `data-plan`，由該 Skill 修正自己的產出。
 
 ## Phase 7: 檢查 plan.md 與分析結果
 
-1. Read 依已載入規範、骨架與範例檢查目標 `plan.md` 是否符合系統介面盤點、端點類型、需求依據、Wave 排程與規劃邊界要求。
-2. Read 依已載入規範檢查介面分析結果是否符合 Planner Skill 委派目標、Wave 依賴順序、澄清轉交與跨介面一致性要求。
+1. Read 依已載入規範、骨架、範例與已載入的憲法 Rule 檢查目標 `plan.md` 是否符合系統介面盤點、端點類型、需求依據、Wave 排程、規劃邊界與憲法通過條件，並列出不符合項目。
+2. Read 依已載入規範檢查介面分析結果是否符合 Planner Skill 委派目標、Wave 依賴順序、澄清轉交與跨介面一致性要求，並列出要交回 Planner Skill 的不符合項目。
 
 ## Phase 8: 修正 plan.md 與分析結果
 
-1. Write 修正目標 `plan.md` 中可由既有資訊處理的全部不符合已載入規範、骨架與範例的問題。
-2. Write 修正介面分析結果中可由既有資訊處理的全部不符合已載入規範的問題。
+1. Write 修正目標 `plan.md` 中可由既有資訊處理的全部不符合已載入規範、骨架、範例與已載入的憲法 Rule 的問題。
+2. Delegate 當介面分析結果有要交回的不符合項目時，將該項目交給擁有該契約的 `ui-ux-plan`、`api-plan` 或 `data-plan`，由該 Skill 修正自己的產出。

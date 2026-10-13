@@ -24,7 +24,13 @@ metadata:
 ## Phase 2: 初始化執行紀錄
 
 1. Read [執行紀錄規範](rules/執行紀錄規範.md)並取得重置、失敗原因與阻塞欄位要求。
-2. Write 依已載入規範在目標 feature 目錄建立或覆寫 `implement-run.md`。
+2. Read [產出覆蓋規範](../constitution/rules/產出覆蓋規範.md)並取得憲法讀取時機、點名部位優先順序與停止寫入條件。
+3. Read 若存在，讀取 `constitution/共同/憲法套用規範.md`，取得專案套用規則；檔案不存在時，專案套用規則為空。
+4. Read 若存在，讀取 `constitution/implement/implement-run.md`，取得 `implement-run.md` 的憲法 Rule；檔案不存在時，憲法 Rule 為空。
+5. Think 依已載入規範決定本次是否停止寫入 `implement-run.md`。
+6. Write 當決定停止寫入時，將拒絕原因寫入回覆。
+7. Think 當決定停止寫入時，決定本次流程停止於拒絕原因。
+8. Write 當決定寫入時，依已載入規範與已載入的憲法 Rule 在目標 feature 目錄建立或覆寫 `implement-run.md`。
 
 ## Phase 3: 執行前檢查
 
@@ -39,7 +45,7 @@ metadata:
 2. Read [平行執行規範](rules/平行執行規範.md)並取得平行批次准入與序列化要求。
 3. Read [檢查點驗證規範](rules/檢查點驗證規範.md)並取得通過紀錄、驗證時機與失敗修正要求。
 4. Think 依已載入規範決定本次目標批次，以及該批次是實作批次或只驗證 Checkpoint。
-5. Write 依已載入規範將本次批次起點寫入 `implement-run.md`。
+5. Write 依已載入規範與已載入的憲法 Rule 將本次批次起點寫入 `implement-run.md`。
 6. Think 若本次目標是只驗證 Checkpoint，決定進入 Phase 8，並停止本 Phase 之後的所有步驟。
 
 ## Phase 5: 載入任務最小上下文
@@ -64,20 +70,22 @@ metadata:
 4. Read 讀取驗證輸出並取得通過或失敗證據。
 5. Read 若驗證失敗，讀取 `implement-run.md` 的 `失敗原因`。
 6. Think 若驗證失敗，依已載入規範決定處置是修正、寫入範圍外阻塞或寫入範圍內阻塞。
-7. Write 若處置是寫入範圍外阻塞，依已載入規範將 `阻塞` 與 `恢復條件` 寫入 `implement-run.md`。
-8. Write 若處置是修正，依已載入規範更新 `implement-run.md` 的 `失敗原因`。
+7. Write 若處置是寫入範圍外阻塞，依已載入規範與已載入的憲法 Rule 將 `阻塞` 與 `恢復條件` 寫入 `implement-run.md`。
+8. Write 若處置是修正，依已載入規範與已載入的憲法 Rule 更新 `implement-run.md` 的 `失敗原因`。
 9. Write 若處置是修正，依已載入規範修正目標檔案，回到本 Phase 第 2 步，並停止本步驟之後的步驟。
-10. Write 若處置是寫入範圍內阻塞，依已載入規範將 `阻塞` 與 `恢復條件` 寫入 `implement-run.md`。
-11. Write 若任務驗證通過，依已載入規範將該任務 checkbox 從 `[ ]` 更新為 `[X]`。
+10. Write 若處置是寫入範圍內阻塞，依已載入規範與已載入的憲法 Rule 將 `阻塞` 與 `恢復條件` 寫入 `implement-run.md`。
+11. Read 若任務驗證通過且尚未載入 `constitution/tasks/tasks.md`，讀取該檔並取得 `tasks.md` 的憲法 Rule；檔案不存在時，憲法 Rule 為空。
+12. Write 若任務驗證通過，依已載入規範與已載入的憲法 Rule 將該任務 checkbox 從 `[ ]` 更新為 `[X]`。
 
 ## Phase 8: 驗證 Checkpoint
 
 1. Read 讀取 `implement-run.md` 並取得 `阻塞` 與 `失敗原因`。
 2. Think 依已載入規範決定驗證目標與要移除的失效通過紀錄；無須驗證時，驗證目標為空。
-3. Write 若存在失效通過紀錄，依已載入規範從 `tasks.md` 移除該通過紀錄。
-4. Delegate 若驗證目標不是空的，使用 Checkpoint 原文的驗證命令或手動檢查並取得結果。
-5. Read 若已執行驗證，讀取驗證輸出並取得通過或失敗證據。
-6. Write 若驗證通過，依已載入規範把通過紀錄寫入 `tasks.md` 的對應 Checkpoint。
+3. Read 若尚未載入 `constitution/tasks/tasks.md`，讀取該檔並取得 `tasks.md` 的憲法 Rule；檔案不存在時，憲法 Rule 為空。
+4. Write 若存在失效通過紀錄，依已載入規範與已載入的憲法 Rule 從 `tasks.md` 移除該通過紀錄。
+5. Delegate 若驗證目標不是空的，使用 Checkpoint 原文的驗證命令或手動檢查並取得結果。
+6. Read 若已執行驗證，讀取驗證輸出並取得通過或失敗證據。
+7. Write 若驗證通過，依已載入規範與已載入的憲法 Rule 把通過紀錄寫入 `tasks.md` 的對應 Checkpoint。
 
 ## Phase 9: 修正失敗的 Checkpoint
 
@@ -85,9 +93,9 @@ metadata:
 2. Read 若驗證失敗，讀取本次 Checkpoint 驗證輸出並取得本次失敗原因。
 3. Think 依已載入規範比較本次失敗原因與紀錄中的 `失敗原因`，決定修正範圍；沒有可修正項目時，修正範圍為空。
 4. Read 若修正範圍不是空的，讀取範圍內的目標檔案並取得對應實作。
-5. Write 若修正範圍不是空的，依已載入規範將本次失敗原因寫入 `implement-run.md` 的 `失敗原因`。
+5. Write 若修正範圍不是空的，依已載入規範與已載入的憲法 Rule 將本次失敗原因寫入 `implement-run.md` 的 `失敗原因`。
 6. Write 若修正範圍不是空的，依已載入規範將修正寫入所屬任務指向的目標檔案。
-7. Write 若修正範圍為空且驗證失敗，依已載入規範將 `阻塞` 與 `恢復條件` 寫入 `implement-run.md`。
+7. Write 若修正範圍為空且驗證失敗，依已載入規範與已載入的憲法 Rule 將 `阻塞` 與 `恢復條件` 寫入 `implement-run.md`。
 8. Think 若已寫入程式修正，決定回到 Phase 8，並停止本 Phase 之後的所有步驟。
 
 ## Phase 10: 決定是否繼續下一批
@@ -95,7 +103,7 @@ metadata:
 1. Read 讀取 `implement-run.md` 並取得 `阻塞`。
 2. Read 讀取 `tasks.md` 並取得未完成任務與 Checkpoint 通過紀錄。
 3. Think 依已載入規範決定下一個執行位置是 Phase 4 第 4 步或 Phase 11。
-4. Write 若下一個執行位置是 Phase 4 第 4 步，依已載入規範清除 `implement-run.md` 的 `失敗原因`，回到 Phase 4 第 4 步，並停止本 Phase 之後的所有步驟。
+4. Write 若下一個執行位置是 Phase 4 第 4 步，依已載入規範與已載入的憲法 Rule 清除 `implement-run.md` 的 `失敗原因`，回到 Phase 4 第 4 步，並停止本 Phase 之後的所有步驟。
 
 ## Phase 11: 回報並結束本次執行
 

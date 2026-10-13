@@ -32,12 +32,18 @@ metadata:
 
 1. Read [Tasks 骨架](templates/tasks.md)並取得任務清單的固定欄位與階段結構。
 2. Read [Tasks 範例](templates/tasks.example.md)並取得已確認任務清單的填寫方式。
-3. Write 依已載入規範與樣板，將任務清單寫入 Phase 1 決定的 `tasks.md`。
+3. Read [產出覆蓋規範](../constitution/rules/產出覆蓋規範.md)並取得憲法讀取時機、點名部位優先順序與停止寫入條件。
+4. Read 若存在，讀取 `constitution/共同/憲法套用規範.md`，取得專案套用規則；檔案不存在時，專案套用規則為空。
+5. Read 若存在，讀取 `constitution/tasks/tasks.md`，取得 `tasks.md` 的憲法 Rule；檔案不存在時，憲法 Rule 為空。
+6. Think 依已載入規範決定本次是否停止寫入 `tasks.md`。
+7. Write 當決定停止寫入時，將拒絕原因寫入回覆。
+8. Think 當決定停止寫入時，決定本次流程停止於拒絕原因。
+9. Write 當決定寫入時，依已載入規範、樣板與已載入的憲法 Rule，將任務清單寫入 Phase 1 決定的 `tasks.md`。
 
 ## Phase 4: 檢查任務清單
 
-1. Read 依已載入規範檢查目標 `tasks.md` 是否照抄範例任務、缺少端點層級、任務沒有部位位址、位址跨端，或測試排在實作之後，並列出不符合項目。
+1. Read 依已載入規範與已載入的憲法 Rule 檢查目標 `tasks.md` 是否照抄範例任務、缺少端點層級、任務沒有部位位址、位址跨端、測試排在實作之後或憲法未通過，並列出不符合項目。
 
 ## Phase 5: 修正任務清單
 
-1. Write 修正目標 `tasks.md` 中全部不符合已載入規範與樣板結構的項目。
+1. Write 修正目標 `tasks.md` 中全部不符合已載入規範、樣板結構與已載入的憲法 Rule 的項目。

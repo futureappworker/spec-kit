@@ -38,13 +38,20 @@ metadata:
 
 ## Phase 4: 撰寫 Research 與 Tech Stack
 
-1. Write 依已載入樣板與範例將 Technical Research 寫入目標 Research 文件。
-2. Write 依已載入樣板與範例將 Tech Stack Summary 寫入目標 Tech Stack 文件。
+1. Read [產出覆蓋規範](../constitution/rules/產出覆蓋規範.md)並取得憲法讀取時機、點名部位優先順序與停止寫入條件。
+2. Read 若存在，讀取 `constitution/共同/憲法套用規範.md`，取得專案套用規則；檔案不存在時，專案套用規則為空。
+3. Read 若存在，讀取 `constitution/technical-research/research.md`，取得 `research.md` 的憲法 Rule；檔案不存在時，憲法 Rule 為空。
+4. Read 若存在，讀取 `constitution/technical-research/techstack.md`，取得 `techstack.md` 的憲法 Rule；檔案不存在時，憲法 Rule 為空。
+5. Think 依已載入規範決定本次是否停止寫入。
+6. Write 當決定停止寫入時，將拒絕原因寫入回覆。
+7. Think 當決定停止寫入時，決定本次流程停止於拒絕原因。
+8. Write 當決定寫入時，依已載入樣板與範例與已載入的憲法 Rule 將 Technical Research 寫入目標 Research 文件。
+9. Write 當決定寫入時，依已載入樣板與範例與已載入的憲法 Rule 將 Tech Stack Summary 寫入目標 Tech Stack 文件。
 
 ## Phase 5: 檢查 Research 與 Tech Stack
 
-1. Read 依已載入規範檢查目標 Research 文件與目標 Tech Stack 文件是否符合 Feature Specification 來源、決策粒度、替代方案完整性、Tech Stack 可追溯性、planning 邊界與樣板結構。
+1. Read 依已載入規範與已載入的憲法 Rule 檢查目標 Research 文件與目標 Tech Stack 文件是否符合 Feature Specification 來源、決策粒度、替代方案完整性、Tech Stack 可追溯性、planning 邊界、樣板結構或憲法通過條件，並列出不符合項目。
 
 ## Phase 6: 修正 Research 與 Tech Stack
 
-1. Write 修正目標 Research 文件與目標 Tech Stack 文件中可由既有資訊處理的全部不符合已載入規範與樣板結構的問題。
+1. Write 修正目標 Research 文件與目標 Tech Stack 文件中可由既有資訊處理的全部不符合已載入規範、樣板結構與已載入的憲法 Rule 的問題。

@@ -1,6 +1,6 @@
 ---
 name: specify
-description: 將使用者的 Feature Prompt 轉換為可進入 planning 的 Feature Specification；當核心需求不明確時，先產生可澄清的 spec 初稿。使用者要求專業需求澄清時，再轉交 clarify-over-specs。
+description: 將使用者的 Feature Prompt 轉換為可進入 planning 的 Feature Specification；當核心需求不明確時，先產生可澄清的 spec 初稿。規格與 checklist 寫完後，若狀態仍是 Needs Clarification，轉交 clarify-over-specs 以提問模式產生澄清問題。
 metadata:
   references:
     - project: GitHub Spec Kit
@@ -24,18 +24,24 @@ metadata:
 
 ## Phase 2: 推導規格內容
 
-1. Read [Spec 推導品質規範](rules/spec推導品質規範.md)並取得需求抽取、User Story 分群、FR/NFR 歸屬、全域需求與澄清轉交要求。
+1. Read [Spec 推導品質規範](rules/spec推導品質規範.md)並取得需求抽取、User Story 分群、FR/NFR 歸屬、全域需求與核心缺口標記要求。
 2. Think 依已載入規範從使用者輸入抽取明確需求、限制條件、資料物件、互動行為、未知點與可成立假設。
 3. Think 依已載入規範決定 User Stories、Acceptance Scenarios、Functional Requirements、Non-Functional Requirements、Global Requirements、Edge Cases、Key Entities、Success Criteria 與 Assumptions。
 
 ## Phase 3: 判斷澄清需求
 
 1. Think 依已載入規範判斷是否存在會影響核心規格的未回答缺口。
-2. Write 當存在核心缺口時，依已載入樣板將可由明確資訊產生的內容寫入目標 Feature Specification，並將 Status 設為 `Needs Clarification`。
+2. Read [產出覆蓋規範](../constitution/rules/產出覆蓋規範.md)並取得憲法讀取時機、點名部位優先順序與停止寫入條件。
+3. Read 若存在，讀取 `constitution/共同/憲法套用規範.md`，取得專案套用規則；檔案不存在時，專案套用規則為空。
+4. Read 若存在，讀取 `constitution/specify/spec.md`，取得 `spec.md` 的憲法 Rule；檔案不存在時，憲法 Rule 為空。
+5. Think 依已載入規範決定本次是否停止寫入 `spec.md`。
+6. Write 當決定停止寫入時，將拒絕原因寫入回覆。
+7. Think 當決定停止寫入時，決定本次流程停止於拒絕原因。
+8. Write 當存在核心缺口且決定寫入時，依已載入樣板與已載入的憲法 Rule 將可由明確資訊產生的內容寫入目標 Feature Specification，並將 Status 設為 `Needs Clarification`。
 
 ## Phase 4: 撰寫完整規格
 
-1. Write 當不存在核心缺口或使用者答案已套用時，依已載入樣板將完整 Feature Specification 寫入目標檔案。
+1. Write 當不存在核心缺口或使用者答案已套用，且未因憲法停止時，依已載入樣板與已載入的憲法 Rule 將完整 Feature Specification 寫入目標檔案。
 
 ## Phase 5: 產生 Requirements Checklist
 
@@ -43,19 +49,24 @@ metadata:
 2. Think 決定目標 Requirements Checklist 路徑與本次 checklist 建立模式。
 3. Read [Requirements Checklist 骨架](templates/requirements-checklist.md)並取得固定內容結構。
 4. Read [Requirements Checklist 範例](templates/requirements-checklist.example.md)並取得完整使用方式。
-5. Write 依已載入樣板與範例將 Requirements Checklist 寫入目標 Feature Specification 所屬 feature 目錄。
+5. Read 若存在，讀取 `constitution/specify/requirements.md`，取得 checklist 的憲法 Rule；檔案不存在時，憲法 Rule 為空。
+6. Think 依已載入規範決定本次是否停止寫入 checklist。
+7. Write 當決定停止寫入時，將拒絕原因寫入回覆。
+8. Think 當決定停止寫入時，決定本次流程停止於拒絕原因。
+9. Write 當決定寫入時，依已載入樣板與範例與已載入的憲法 Rule 將 Requirements Checklist 寫入目標 Feature Specification 所屬 feature 目錄。
 
 ## Phase 6: 檢查規格與 Checklist 一致性
 
-1. Read 依已載入規範檢查目標 Feature Specification 是否存在捏造澄清、需求錯誤歸屬、未處理核心缺口、矛盾需求、過時 Assumptions 或樣板結構偏離。
-2. Read 依已載入規範逐項驗證目標 Requirements Checklist 並列出未通過項目。
+1. Read 依已載入規範與已載入的憲法 Rule 檢查目標 Feature Specification 是否存在捏造澄清、需求錯誤歸屬、未處理核心缺口、矛盾需求、過時 Assumptions、樣板結構偏離或憲法未通過項目，並列出不符合項目。
+2. Read 依已載入規範與已載入的憲法 Rule 逐項驗證目標 Requirements Checklist 並列出未通過項目。
 
 ## Phase 7: 修正規格並更新 Checklist
 
-1. Write 修正目標 Feature Specification 中可由既有資訊處理的全部不符合已載入規範與樣板結構的問題。
-2. Write 更新目標 Requirements Checklist 中各項通過狀態與 Notes。
+1. Write 修正目標 Feature Specification 中可由既有資訊處理的全部不符合已載入規範、樣板結構與已載入的憲法 Rule 的問題。
+2. Write 更新目標 Requirements Checklist 中各項通過狀態與 Notes，並修正未通過的憲法 Rule。
 
-## Phase 8: 委派專業需求澄清
+## Phase 8: 委派規格澄清提問
 
-1. Think 依已載入規範決定本次是否委派專業需求澄清。
-2. Delegate `clarify-over-specs` 當已載入規範要求委派時，針對已寫入的 Feature Specification 進行專業需求澄清。
+1. Read [規格澄清提問委派規範](rules/規格澄清提問委派規範.md)並取得委派條件與委派邊界。
+2. Think 依已載入規範決定本次是否委派規格澄清提問。
+3. Delegate `clarify-over-specs` 當已載入規範要求委派時，針對已寫入的 Feature Specification 以提問模式產生澄清問題。
