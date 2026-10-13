@@ -1,7 +1,16 @@
 ---
 name: specify
 description: 將使用者的 Feature Prompt 轉換為可進入 planning 的 Feature Specification；當核心需求不明確時，先產生可澄清的 spec 初稿。使用者要求專業需求澄清時，再轉交 clarify-over-specs。
+metadata:
+  references:
+    - project: GitHub Spec Kit
+      url: https://github.com/github/spec-kit
+      source: templates/commands/specify.md
+      license: MIT
+      copyright: Copyright GitHub, Inc.
 ---
+
+本 Skill 參考並改寫自 [GitHub Spec Kit](https://github.com/github/spec-kit) 的 [`templates/commands/specify.md`](https://github.com/github/spec-kit/blob/main/templates/commands/specify.md)。該原始碼以 MIT License 授權，Copyright GitHub, Inc.。完整授權聲明見 [NOTICE](NOTICE)。
 
 # SOP
 

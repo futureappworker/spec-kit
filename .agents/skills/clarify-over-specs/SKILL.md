@@ -1,7 +1,16 @@
 ---
 name: clarify-over-specs
 description: 在 specify 寫完 Feature Specification 之後，依使用者要求對 spec.md 做專業需求澄清。掃描覆蓋與影響後委派 clarify 提問，並把回答寫回規格。
+metadata:
+  references:
+    - project: GitHub Spec Kit
+      url: https://github.com/github/spec-kit
+      source: templates/commands/clarify.md
+      license: MIT
+      copyright: Copyright GitHub, Inc.
 ---
+
+本 Skill 參考並改寫自 [GitHub Spec Kit](https://github.com/github/spec-kit) 的 [`templates/commands/clarify.md`](https://github.com/github/spec-kit/blob/main/templates/commands/clarify.md)。該原始碼以 MIT License 授權，Copyright GitHub, Inc.。完整授權聲明見 [NOTICE](NOTICE)。
 
 # SOP
 

@@ -1,7 +1,17 @@
 ---
 name: system-analysis
 description: 依 Feature Specification、同目錄 research.md 與 techstack.md 產出並執行 plan.md 中的系統分析規劃，先盤點需求涉及的技術端點與系統介面，再用 Wave 委派對應 Planner Skill 完成介面分析。
+metadata:
+  references:
+    - project: GitHub Spec Kit
+      url: https://github.com/github/spec-kit
+      source: templates/commands/plan.md
+      scope: plan 工作流程
+      license: MIT
+      copyright: Copyright GitHub, Inc.
 ---
+
+本 Skill 參考並改寫自 [GitHub Spec Kit](https://github.com/github/spec-kit) 的 [`templates/commands/plan.md`](https://github.com/github/spec-kit/blob/main/templates/commands/plan.md)（plan 工作流程）。該原始碼以 MIT License 授權，Copyright GitHub, Inc.。完整授權聲明見 [NOTICE](NOTICE)。
 
 # SOP
 

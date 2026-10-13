@@ -1,7 +1,17 @@
 ---
 name: ui-ux-plan
 description: 分析前端端點、瀏覽器互動、畫面狀態與使用者流程，產出可供 API 與資料規劃對齊的 Pencil UI/UX 介面分析。
+metadata:
+  references:
+    - project: GitHub Spec Kit
+      url: https://github.com/github/spec-kit
+      source: templates/commands/plan.md
+      scope: Phase 1 介面契約
+      license: MIT
+      copyright: Copyright GitHub, Inc.
 ---
+
+本 Skill 參考並改寫自 [GitHub Spec Kit](https://github.com/github/spec-kit) 的 [`templates/commands/plan.md`](https://github.com/github/spec-kit/blob/main/templates/commands/plan.md)（Phase 1 介面契約）。該原始碼以 MIT License 授權，Copyright GitHub, Inc.。完整授權聲明見 [NOTICE](NOTICE)。
 
 # SOP
 

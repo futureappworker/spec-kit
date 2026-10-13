@@ -1,7 +1,16 @@
 ---
 name: implement
 description: 依 feature 目錄中的 tasks.md 連續執行安全任務批次，直到任務全部完成；逐任務只讀 References，逐任務驗證通過後才打勾。Checkpoint 驗證失敗時，先修正所屬任務再重新驗證。
+metadata:
+  references:
+    - project: GitHub Spec Kit
+      url: https://github.com/github/spec-kit
+      source: templates/commands/implement.md
+      license: MIT
+      copyright: Copyright GitHub, Inc.
 ---
+
+本 Skill 參考並改寫自 [GitHub Spec Kit](https://github.com/github/spec-kit) 的 [`templates/commands/implement.md`](https://github.com/github/spec-kit/blob/main/templates/commands/implement.md)。該原始碼以 MIT License 授權，Copyright GitHub, Inc.。完整授權聲明見 [NOTICE](NOTICE)。
 
 # SOP
 

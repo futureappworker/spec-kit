@@ -1,7 +1,17 @@
 ---
 name: data-plan
 description: 分析資料庫端點、持久化模型、查詢、快照與資料保留邊界，產出可供前端與 API 規劃對齊的 DBML 資料介面分析。
+metadata:
+  references:
+    - project: GitHub Spec Kit
+      url: https://github.com/github/spec-kit
+      source: templates/commands/plan.md
+      scope: Phase 1 data-model.md
+      license: MIT
+      copyright: Copyright GitHub, Inc.
 ---
+
+本 Skill 參考並改寫自 [GitHub Spec Kit](https://github.com/github/spec-kit) 的 [`templates/commands/plan.md`](https://github.com/github/spec-kit/blob/main/templates/commands/plan.md)（Phase 1 data-model.md）。該原始碼以 MIT License 授權，Copyright GitHub, Inc.。完整授權聲明見 [NOTICE](NOTICE)。
 
 # SOP
 

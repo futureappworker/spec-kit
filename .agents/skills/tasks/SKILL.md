@@ -1,7 +1,16 @@
 ---
 name: tasks
 description: 將 Feature Specification 與 plan.md 的系統介面盤點轉成可由上往下執行的 tasks.md；每個任務只掛本端點契約的一個部位。
+metadata:
+  references:
+    - project: GitHub Spec Kit
+      url: https://github.com/github/spec-kit
+      source: templates/commands/tasks.md
+      license: MIT
+      copyright: Copyright GitHub, Inc.
 ---
+
+本 Skill 參考並改寫自 [GitHub Spec Kit](https://github.com/github/spec-kit) 的 [`templates/commands/tasks.md`](https://github.com/github/spec-kit/blob/main/templates/commands/tasks.md)。該原始碼以 MIT License 授權，Copyright GitHub, Inc.。完整授權聲明見 [NOTICE](NOTICE)。
 
 # SOP
 
