@@ -1,9 +1,9 @@
 # Rule 1 - 澄清目標必須影響核心決策
 
 - Clarification 必須用於會改變任務目標、Artifact 契約、功能範圍、資料歸屬、使用者旅程、驗收結果、安全隱私要求、技術決策邊界或後續工作邊界的缺口。
-- 不影響核心決策且可以保守推導的缺口必須寫入 Assumptions、Notes 或回覆 Artifact 的未阻塞事項。
+- 不影響核心決策且可以保守推導的缺口必須寫入回覆 Artifact 的未阻塞事項，不得寫入目標檔案。
 - Clarification 不得詢問不影響後續執行的偏好細節、可逆的表面樣式、內部實作細節或可由後續階段自然決定的內容。
-- 每次提問模式最多必須輸出三個 Clarification，且必須依影響排序。
+- 每次提問最多必須輸出五個 Clarification，且必須依影響排序。
 - 輸出題數必須依核心缺口決定。
 - 輸出題數不得依 Template 範例中的題數決定。
 
@@ -95,9 +95,9 @@
 # Rule 3 - 提問排序必須依風險與影響
 
 - Clarification 必須依 `task goal > artifact contract > scope > security/privacy > data ownership > user journey > acceptance result > implementation preference > style detail` 排序。
-- 當可提出的問題超過三個時，必須只保留排序最高的三個。
-- 被排除且不阻塞核心決策的缺口必須轉為 Assumptions、Notes 或回覆 Artifact 的未阻塞事項。
-- 被排除但仍阻塞核心決策的缺口必須保留在目標狀態或回覆 Artifact 中，使狀態維持 `Needs Clarification` 或等價的未完成狀態。
+- 當可提出的問題超過五個時，必須只保留排序最高的五個。
+- 被排除且不阻塞核心決策的缺口必須寫入回覆 Artifact 的未阻塞事項，不得寫入目標檔案。
+- 被排除但仍阻塞核心決策的缺口必須在回覆中標明仍未解決，不得改寫目標檔案的狀態。
 
 ## Good Example
 
@@ -119,114 +119,7 @@
 3. 這個 Skill 要支援哪些使用情境? (task goal)
 ```
 
-# Rule 4 - 使用者答案必須套用到全部受影響內容
-
-- 套用模式必須把使用者回答記錄到目標 Artifact 的 Clarifications、Decision Log、Notes 或回覆 Artifact 的已確認決策區段。
-- 套用模式必須同步更新受影響的需求、章節、模板、規則、假設、狀態、驗收條件與後續工作邊界。
-- 當答案取代既有 Assumption 時，必須刪除或改寫該 Assumption。
-- 套用模式不得只新增 Q/A 而不更新受影響的正文內容。
-
-## Good Example
-
-- 答案同時寫入決策紀錄，並同步改寫受影響的需求與假設。
-
-```markdown
-## Decisions
-
-### Session 2026-10-05
-
-- Q: 目標報告是否必須包含互動圖表? -> A: 不需要，產出靜態 Markdown 報告
-
-## Artifact Contract
-
-- 報告必須使用 Markdown 文件輸出，不建立 Canvas 或互動元件。
-
-## Assumptions
-
-- 使用者會在後續明確要求時才需要互動視覺化。
-```
-
-## Bad Example
-
-- 只記錄答案，正文仍保留舊假設或缺少對應內容。
-
-```markdown
-## Decisions
-
-### Session 2026-10-05
-
-- Q: 目標報告是否必須包含互動圖表? -> A: 不需要，產出靜態 Markdown 報告
-
-## Assumptions
-
-- 報告是否需要互動圖表尚未決定。
-```
-
-# Rule 5 - 目標狀態必須反映澄清完成度
-
-- 若目標 Artifact 有 Status 欄位且仍有核心缺口未回答，Status 必須為 `Needs Clarification` 或該 Artifact 的等價未完成狀態。
-- 若目標 Artifact 有 Status 欄位且所有核心缺口已回答或剩餘缺口已合理轉為 Assumptions，Status 必須改為下一階段可執行狀態。
-- 若使用者答案造成內容矛盾且尚未修正，Status 必須維持未完成狀態。
-- 當沒有目標 Artifact 或沒有 Status 欄位時，回覆 Artifact 必須明確列出已確認決策、剩餘阻塞缺口與可繼續執行的邊界。
-
-## Good Example
-
-- 狀態和剩餘缺口一致，可判斷是否能進入下一階段。
-
-```markdown
-**Status**: Ready for Skill Engineering
-
-## Decisions
-
-### Session 2026-10-05
-
-- Q: 目標 Skill 是否需要產出固定模板? -> A: 需要，固定模板由 templates/ 維護
-```
-
-## Bad Example
-
-- 仍有未回答的核心問題，卻標示為可進入下一階段。
-
-```markdown
-**Status**: Ready for Skill Engineering
-
-## Decisions
-
-### Session 2026-10-05
-
-- Q: 目標 Skill 是否需要產出固定模板? -> A: [NEEDS CLARIFICATION]
-```
-
-# Rule 6 - 澄清結果不得越過目標層級
-
-- 使用者回答若包含超出當前 Artifact 層級的方案，套用時必須只保留符合目標層級的決策。
-- Clarification 回寫不得新增未被使用者明確要求的程式語言、框架、資料庫、API、雲服務、內部模組設計或流程承諾。
-- 需要後續階段取捨的內容必須留給後續階段，不得在澄清結果中提前固定。
-- Clarification 必須維持目前任務或 Artifact 的抽象層級。
-
-## Good Example
-
-- 使用者提到實作，但回寫時轉成目前 Artifact 層級的需求。
-
-```markdown
-使用者回答：可以用 Python script 檢查格式，重點是每次輸出都要符合模板。
-
-回寫到 Skill 需求：
-- Skill 必須在產出後檢查 Artifact 是否符合模板結構。
-```
-
-## Bad Example
-
-- 回寫內容把未確認的實作方案固定到目前 Artifact。
-
-```markdown
-使用者回答：可以用 Python script 檢查格式，重點是每次輸出都要符合模板。
-
-回寫到 Skill 需求：
-- Skill 必須建立 `scripts/check_template.py` 並在每次執行時呼叫。
-```
-
-# Rule 7 - mermaid 只描述需要看圖的問題情境
+# Rule 4 - mermaid 只描述需要看圖的問題情境
 
 - 當 Clarification 所問的情境包含流程、狀態、關係或結構，且缺少該情境的圖就無法判斷問題範圍時，該題必須在 Suggested Answers 之前加入 mermaid 圖。
 - 該 mermaid 圖必須只描述被詢問的情境。
@@ -297,3 +190,59 @@ flowchart TD
 
 **Your choice**: _請回覆 Q1: A/B/C 或 Custom - 你的答案_
 ````
+
+# Rule 5 - 鎖定題目必須照題輸出
+
+- 呼叫者已提供鎖定題目時，必須依該順序輸出這些題目。
+- 不得新增、刪除或改問另一個決策。
+- 鎖定題目超過五題時，必須只保留呼叫者排序的前五題。
+- 鎖定題目缺少問句格式所需欄位時，必須只補齊格式，不得改變原本要決定的事。
+
+## Good Example
+
+- 呼叫者鎖定原始照片的去向，輸出仍問這一件事。
+
+```markdown
+鎖定題目：原始照片加入相簿後，檔案應保留在原處嗎?
+輸出問句：原始照片加入相簿後，檔案應保留在原處嗎?
+```
+
+## Bad Example
+
+- 呼叫者鎖定的是原始照片去向，輸出卻改問資料庫選型。
+
+```markdown
+鎖定題目：原始照片加入相簿後，檔案應保留在原處嗎?
+輸出問句：規格應該使用 PostgreSQL 還是 SQLite?
+```
+
+# Rule 6 - 回答不得寫入目標檔案
+
+- 澄清結果必須只寫入回覆 Artifact。
+- 不得把使用者回答、決策摘要、假設或狀態寫入目標檔案。
+- 不阻塞的排除項必須寫入回覆的未阻塞事項。
+- 因題數上限未問、但仍阻塞核心決策的缺口，必須在回覆中標明仍未解決。
+
+## Good Example
+
+- 問題與未阻塞事項都留在回覆，目標規格檔沒有被改寫。
+
+```markdown
+## Question 1: 原始照片的去向
+
+**What we need to know**: 原始照片加入相簿後，檔案應保留在原處嗎?
+
+未阻塞事項：日期分組預設使用拍攝日期。
+```
+
+## Bad Example
+
+- 回答被直接寫進目標規格的假設與狀態。
+
+```markdown
+**狀態 ( Status )**：Ready for Planning
+
+## 假設 ( Assumptions )
+
+- 原始照片保留在原處。
+```

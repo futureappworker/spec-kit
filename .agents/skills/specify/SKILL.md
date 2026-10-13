@@ -1,6 +1,6 @@
 ---
 name: specify
-description: 將使用者的 Feature Prompt 轉換為可進入 planning 的 Feature Specification；當核心需求不明確時，先產生可澄清的 spec 初稿並轉交 clarify。
+description: 將使用者的 Feature Prompt 轉換為可進入 planning 的 Feature Specification；當核心需求不明確時，先產生可澄清的 spec 初稿。使用者要求專業需求澄清時，再轉交 clarify-over-specs。
 ---
 
 # SOP
@@ -23,8 +23,6 @@ description: 將使用者的 Feature Prompt 轉換為可進入 planning 的 Feat
 
 1. Think 依已載入規範判斷是否存在會影響核心規格的未回答缺口。
 2. Write 當存在核心缺口時，依已載入樣板將可由明確資訊產生的內容寫入目標 Feature Specification，並將 Status 設為 `Needs Clarification`。
-3. Delegate 當存在核心缺口時，交給 `clarify` 針對目標 Feature Specification 產生澄清問題。
-4. Think 當已轉交 `clarify` 時，決定本次 `specify` 流程停止於澄清問題產出。
 
 ## Phase 4: 撰寫完整規格
 
@@ -47,3 +45,8 @@ description: 將使用者的 Feature Prompt 轉換為可進入 planning 的 Feat
 
 1. Write 修正目標 Feature Specification 中可由既有資訊處理的全部不符合已載入規範與樣板結構的問題。
 2. Write 更新目標 Requirements Checklist 中各項通過狀態與 Notes。
+
+## Phase 8: 委派專業需求澄清
+
+1. Think 依已載入規範決定本次是否委派專業需求澄清。
+2. Delegate `clarify-over-specs` 當已載入規範要求委派時，針對已寫入的 Feature Specification 進行專業需求澄清。

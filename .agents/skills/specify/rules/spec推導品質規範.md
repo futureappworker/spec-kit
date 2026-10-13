@@ -33,16 +33,19 @@
 - Q: 系統是否保留原始照片? → A: 保留原始照片不變
 ```
 
-# Rule 2 - 核心缺口必須轉交 clarify
+# Rule 2 - 核心缺口必須標為待澄清
 
 - 當未回答缺口會改變功能範圍、資料歸屬、使用者旅程、驗收結果、安全隱私要求或後續 planning 邊界時，Spec 狀態必須設為 `Needs Clarification`。
-- 當 Spec 狀態為 `Needs Clarification` 時，`specify` 必須產生只含明確資訊的初稿並轉交 `clarify`。
+- 當 Spec 狀態為 `Needs Clarification` 時，`specify` 必須產生只含明確資訊的初稿。
 - `specify` 不得自行產生澄清問題的最終答案。
+- `specify` 不得委派 `clarify`。
+- 使用者明確要求對本次規格做專業需求澄清時，`specify` 必須在規格與 checklist 寫入完成後委派 `clarify-over-specs`。
+- 使用者沒有要求專業需求澄清時，`specify` 不得委派 `clarify-over-specs`。
 - 不影響核心規格的 UI 細節、實作技術與 planning 階段決策不得阻塞 `specify`。
 
 ## Good Example
 
-- 原始照片是否被搬移會改變資料歸屬，因此應轉交 `clarify`。
+- 原始照片是否被搬移會改變資料歸屬，因此狀態設為 `Needs Clarification`，初稿不寫入該問題的答案。
 
 ```markdown
 **狀態 ( Status )**：Needs Clarification
