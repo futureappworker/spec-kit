@@ -16,11 +16,13 @@ metadata:
 
 ## Phase 1: 讀取輸入與樣板
 
-1. Read 讀取使用者輸入並取得原始 Feature Prompt、目標輸出意圖與已提供的澄清答案。
-2. Read [規格輸出位置規範](rules/規格輸出位置規範.md)並取得目標路徑、檔名與寫入狀態要求。
-3. Read [Spec Template 骨架](templates/spec.md)並取得 Feature Specification 的固定輸出結構。
-4. Read [Spec Template 範例](templates/spec.example.md)並取得完整 Artifact 的填寫方式。
-5. Think 依已載入規範決定目標 Feature Specification 路徑與本次輸出模式。
+1. Read 讀取使用者輸入並取得原始 Feature Prompt、目標輸出意圖、已提供的澄清答案，以及是否明確指定既有 Feature Specification 路徑。
+2. Read [規格輸出位置規範](rules/規格輸出位置規範.md)並取得目標路徑、檔名、寫入模式、狀態與既有規格選擇要求。
+3. Read 讀取 `specs/` 下每個 feature 目錄的 `spec.md` 狀態列；`specs/` 不存在或沒有 feature 目錄時，既有規格為空。
+4. Think 依已載入規範決定目標 Feature Specification 路徑與本次寫入模式，或決定本次為等待使用者選擇。
+5. Write 若本次為等待使用者選擇，將尚未完成的 feature 目錄與選擇問題寫入回覆，並停止本次 SOP 的所有後續步驟。
+6. Read [Spec Template 骨架](templates/spec.md)並取得 Feature Specification 的固定輸出結構。
+7. Read [Spec Template 範例](templates/spec.example.md)並取得完整 Artifact 的填寫方式。
 
 ## Phase 2: 推導規格內容
 

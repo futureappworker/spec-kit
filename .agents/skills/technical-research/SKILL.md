@@ -34,7 +34,7 @@ metadata:
 
 1. Think 依已載入規範從 Feature Specification 與使用者技術偏好推導需要在 planning 前固定的技術取捨。
 2. Think 依已載入規範為每個技術取捨決定 Decision 標題、Rationale 與 Alternatives considered。
-3. Think 依已載入規範從已決定的技術取捨萃取採用技術、延後或不採用技術、planning implications 與 follow-up technical questions。
+3. Think 依已載入規範從已決定的技術取捨萃取採用技術、延後或不採用技術與 planning implications。
 
 ## Phase 4: 撰寫 Research 與 Tech Stack
 

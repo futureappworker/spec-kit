@@ -10,16 +10,18 @@ Skills 放在 `.agents/skills/`。每個 Skill 的入口是該目錄下的 `SKIL
 
 | Skill | 做什麼 |
 | --- | --- |
-| [specify](.agents/skills/specify/SKILL.md) | 把自然語言需求推成結構完整、可驗證的 Feature Specification，寫入 `specs/<NNN>-<feature-slug>/spec.md`。內容涵蓋 User Stories、驗收條件、功能與非功能需求、邊界情況與成功標準。規格與 checklist 寫完後，若仍有核心缺口、Status 為 `Needs Clarification`，把該規格交給 `clarify-over-specs` 以提問模式產生澄清問題。 |
+| [specify](.agents/skills/specify/SKILL.md) | 把自然語言需求推成結構完整、可驗證的 Feature Specification，寫入 `specs/<NNN>-<feature-slug>/spec.md`。內容涵蓋 User Stories、驗收條件、功能與非功能需求、邊界情況與成功標準。未指定既有路徑時，跳過狀態為 `Implemented` 的規格並建立下一個流水號；尚未完成的規格有兩份以上時，先詢問要使用哪一份。明確指定路徑時更新該檔，寫入的 Status 只會是 `Draft`、`Needs Clarification` 或 `Ready for Planning`。規格與 checklist 寫完後，若仍有核心缺口、Status 為 `Needs Clarification`，把該規格交給 `clarify-over-specs` 以提問模式產生澄清問題。 |
 | [clarify](.agents/skills/clarify/SKILL.md) | 針對任何任務、Artifact 或決策中會擋住後續工作的核心不確定處產生澄清問題。依影響排序，最多五題；每題提供 A、B、C 與 Custom，並標出恰好一個推薦選項與理由。當問題涉及流程、狀態、關係或結構，且缺少圖就無法判斷範圍時，在選項前附上描述該情境的 mermaid 圖。回答不寫入目標檔案。 |
 | [clarify-over-specs](.agents/skills/clarify-over-specs/SKILL.md) | 在 `/specify` 寫完 `spec.md` 之後做專業需求澄清。`specify` 在狀態為 `Needs Clarification` 時以提問模式交給它；使用者也能直接要求提問或套用答案。先掃描規格覆蓋並依影響挑出最多五題，再委派 `clarify` 提問；使用者回答後，由這個 Skill 把答案寫回規格的對應章節。 |
-| [technical-research](.agents/skills/technical-research/SKILL.md) | 在 `/specify` 產出的 Feature Specification 之後執行，將可進入 planning 的規格推導成 `research.md` 與 `techstack.md`。`research.md` 聚焦技術決策、理由與替代方案；`techstack.md` 彙整採用、延後或不採用的技術堆疊與 planning 約束。 |
+| [technical-research](.agents/skills/technical-research/SKILL.md) | 在 `/specify` 產出的 Feature Specification 之後執行，將可進入 planning 的規格推導成 `research.md` 與 `techstack.md`。`research.md` 聚焦技術決策、理由與替代方案；`techstack.md` 彙整採用、延後或不採用的技術堆疊與 planning 約束，不另列後續技術問題。選型資訊不足時把缺口交回使用者，且不得把這兩份文件標為 Ready for Planning。 |
 | [system-analysis](.agents/skills/system-analysis/SKILL.md) | 依 Feature Specification、同目錄 `research.md` 與 `techstack.md` 產出並執行 `plan.md` 中的系統分析規劃。先盤點技術端點與系統介面，再依依賴關係排成分析 Wave，並委派 `ui-ux-plan`、`api-plan`、`data-plan` 完成對應介面分析。介面契約需要修改時，交回擁有該契約的 Planner Skill 修正。 |
+| [testplan](.agents/skills/testplan/SKILL.md) | 在系統介面分析完成後，依 `spec.md`、`plan.md` 與契約檔制定 `testplan.md`。以 User Story 為章，跨故事需求另成一章；每個可觀察的 FR 與 NFR 寫成原子案例，每個案例指向一個上游契約位址。各章自帶 TDD 順序。 |
 | [ui-ux-plan](.agents/skills/ui-ux-plan/SKILL.md) | 分析前端端點、瀏覽器互動、畫面狀態與使用者流程，依 Pencil 樣板 `templates/interface.pen` 產出可供 API 與資料規劃對齊的 UI/UX 介面分析。 |
 | [api-plan](.agents/skills/api-plan/SKILL.md) | 分析後端端點、API、WebSocket、服務狀態機與權威判定邊界，依 OpenAPI 樣板 `templates/openapi.yaml` 產出可供前端與資料規劃對齊的 API 介面分析。 |
 | [data-plan](.agents/skills/data-plan/SKILL.md) | 分析資料庫端點、持久化模型、查詢、快照與資料保留邊界，依 DBML 樣板 `templates/schema.dbml` 產出可供前端與 API 規劃對齊的資料介面分析。 |
-| [tasks](.agents/skills/tasks/SKILL.md) | 在系統介面分析完成後，依 Feature Specification 與 `plan.md` 的系統介面盤點，產出可由上往下執行的 `tasks.md`，寫入該功能 `plan.md` 所在目錄。任務依使用者故事分階段；每個任務只掛本端點契約的一個部位，且測試排在對應實作之前。 |
-| [implement](.agents/skills/implement/SKILL.md) | 依 feature 目錄中的 `tasks.md` 連續執行安全任務批次，直到任務全部完成。逐任務只讀該任務列出的 References，驗證通過後才把 checkbox 從 `[ ]` 改為 `[X]`。Checkpoint 驗證失敗時，先修正該 Checkpoint 所屬任務再重新驗證。 |
+| [tasks](.agents/skills/tasks/SKILL.md) | 在 `testplan.md` 完成後，依測試計劃的 User Story、跨故事章與各章 TDD 順序產出 `tasks.md`。每個原子案例依序拆成紅燈、綠燈、重構三個任務，並同時指向該案例與它的契約位址。 |
+| [implement](.agents/skills/implement/SKILL.md) | 依 feature 目錄中的 `tasks.md` 連續執行安全任務批次，直到任務全部完成。標有 TDD 步驟的任務交給 `tdd`，只做紅燈、綠燈或重構其中一步；其餘任務逐任務只讀該任務列出的 References。驗證通過後才把 checkbox 從 `[ ]` 改為 `[X]`。Checkpoint 驗證失敗時，先修正該 Checkpoint 所屬任務再重新驗證。任務與已到達的 Checkpoint 都完成且沒有阻塞時，把該 feature 的 `spec.md` 狀態改為 `Implemented`。 |
+| [tdd](.agents/skills/tdd/SKILL.md) | 以紅燈、綠燈、重構推進一條已確認接縫。使用者直接呼叫且未指定步驟時，先確認接縫，再跑完整循環。`implement` 傳入一個步驟與測試計劃案例時，該案例就是已確認接縫，本次只做那一步。受測部位是瀏覽器時，用 Playwright 寫並執行該案例。 |
 | [constitution](.agents/skills/constitution/SKILL.md) | 依使用者需求撰寫專案憲法。使用者要求必要憲法、共同憲法、共用憲法、共同套用，或 `constitution/共同/憲法套用規範.md` 時，若該檔不存在，先寫入基本版。要為已確認的 Skill 產出增量撰寫憲法 Rule 時，目標 Skill、產出物、部位與必備或禁止內容能從描述判斷則直接採用，判斷不出來才問下一個缺口，一次寫入一條 Rule。 |
 
 ## Skill 工程

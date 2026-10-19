@@ -34,6 +34,8 @@ Status: Unknown
 - 不得加入 Feature Specification 沒有支持的技術偏好、平台限制或第三方服務。
 - 當使用者在本次輸入補充技術偏好時，可以採用，但必須在 Rationale 中明確連回該偏好與規格需求。
 - 缺少足以支持技術選型的資訊時，必須把該缺口交回使用者，不得自行捏造。
+- 此缺口不得寫入 Research 或 Tech Stack。
+- 存在此缺口時，不得把 Research 或 Tech Stack 的狀態標為 Ready for Planning。
 
 ## Good Example
 
@@ -108,7 +110,8 @@ Status: Unknown
 # Rule 5 - Research 與 Tech Stack 不得取代 planning
 
 - Research 必須停止在技術決策、理由與替代方案層級。
-- Tech Stack 必須停止在技術堆疊摘要、採用技術、延後或不採用技術、planning implications 與 follow-up technical questions 層級。
+- Tech Stack 必須停止在技術堆疊摘要、採用技術、延後或不採用技術與 planning implications 層級。
+- Tech Stack 不得包含後續技術問題或未關閉提問。
 - Research 不得輸出任務分解、開發排程、完整 API 規格、資料庫 migration 或程式碼。
 - Tech Stack 不得輸出任務分解、開發排程、完整 API 規格、資料庫 migration 或程式碼。
 - 可以在 Rationale 中提到會影響 planning 的資料欄位或流程概念，但不得展開成實作清單。
@@ -139,7 +142,9 @@ Status: Unknown
 - `採用技術 (Adopted Technologies)` 中每一列必須對應到一個 Source Decision。
 - `延後或不採用技術 (Deferred or Rejected Technologies)` 中每一列必須來自 Research 的 Alternatives considered 或明確延後策略。
 - `規劃影響 (Planning Implications)` 必須描述 planning 需要遵守的技術約束，不得轉成任務清單。
-- `後續技術問題 (Follow-up Technical Questions)` 必須只保留仍會影響技術堆疊落地的問題。
+- 會影響 planning 技術邊界、且能從 Feature Specification 或已完成 Decision 推導的事項，必須寫入 Decision、延後或不採用技術或規劃影響。
+- 已寫入 Decision、延後或不採用技術或規劃影響的事項，不得再以提問出現。
+- 不改變已決定技術邊界的參數、量測方式與介面形狀，必須寫成規劃影響中的約束。
 
 ## Good Example
 

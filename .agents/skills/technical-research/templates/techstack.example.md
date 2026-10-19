@@ -40,9 +40,3 @@
 - Data planning 應分開設計 MySQL metadata schema 與檔案系統路徑保存策略。
 - Upload planning 必須包含 `busboy` 串流處理、content-type 檢查、副檔名檢查與大型檔案錯誤處理。
 - Preview planning 應先支援原始檔案 URL 或同檔案串流，並把縮圖產生保留為後續擴充點。
-
-## 後續技術問題 (Follow-up Technical Questions)
-
-- 是否需要在初版限制單張照片大小或一次上傳的照片數量？
-- MySQL 連線設定是否由環境變數提供，還是本機開發固定配置即可？
-- 原始照片檔案應保存在專案內部資料目錄，還是使用者指定的外部資料目錄？

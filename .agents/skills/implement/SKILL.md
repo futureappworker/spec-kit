@@ -1,6 +1,6 @@
 ---
 name: implement
-description: 依 feature 目錄中的 tasks.md 連續執行安全任務批次，直到任務全部完成；逐任務只讀 References，逐任務驗證通過後才打勾。Checkpoint 驗證失敗時，先修正所屬任務再重新驗證。
+description: 依 feature 目錄中的 tasks.md 連續執行安全任務批次，直到任務全部完成；標有 TDD 步驟的任務交給 tdd 只做該步驟，其餘任務逐任務只讀 References，逐任務驗證通過後才打勾。Checkpoint 驗證失敗時，先修正所屬任務再重新驗證。
 metadata:
   references:
     - project: GitHub Spec Kit
@@ -41,7 +41,7 @@ metadata:
 
 ## Phase 4: 選擇可執行任務批次
 
-1. Read [任務選擇規範](rules/任務選擇規範.md)並取得任務選擇、Phase gate 與連續批次要求。
+1. Read [任務選擇規範](rules/任務選擇規範.md)並取得任務選擇與 Phase gate 要求。
 2. Read [平行執行規範](rules/平行執行規範.md)並取得平行批次准入與序列化要求。
 3. Read [檢查點驗證規範](rules/檢查點驗證規範.md)並取得通過紀錄、驗證時機與失敗修正要求。
 4. Think 依已載入規範決定本次目標批次，以及該批次是實作批次或只驗證 Checkpoint。
@@ -57,10 +57,12 @@ metadata:
 ## Phase 6: 執行任務批次
 
 1. Read 若尚未載入 [任務執行規範](rules/任務執行規範.md)，讀取該規範並取得變更範圍、測試任務與實作任務要求。
-2. Think 依已載入規範決定每個已選任務的變更範圍與完成判定。
-3. Write 若存在測試任務，依已載入規範逐任務將契約斷言寫入目標測試檔。
-4. Delegate 若存在測試任務，依已載入規範使用專案既有測試指令逐任務取得預期失敗結果。
-5. Write 若存在實作任務，依已載入規範逐任務將最小變更寫入目標檔案。
+2. Read [TDD步驟委派規範](rules/TDD步驟委派規範.md)並取得有 TDD 步驟的任務委派要求。
+3. Think 依已載入規範決定每個已選任務是 TDD 步驟或一般任務，以及各自的完成判定。
+4. Delegate 若存在標有 TDD 步驟的任務，依已載入規範將每個該任務的步驟名稱、測試計劃案例位址與目標檔交給 `tdd`。
+5. Write 若存在沒有 TDD 步驟的測試任務，依已載入規範逐任務將契約斷言寫入目標測試檔。
+6. Delegate 若存在沒有 TDD 步驟的測試任務，依已載入規範使用專案既有測試指令逐任務取得預期失敗結果。
+7. Write 若存在沒有 TDD 步驟的實作任務，依已載入規範逐任務將最小變更寫入目標檔案。
 
 ## Phase 7: 驗證與打勾
 
@@ -72,10 +74,11 @@ metadata:
 6. Think 若驗證失敗，依已載入規範決定處置是修正、寫入範圍外阻塞或寫入範圍內阻塞。
 7. Write 若處置是寫入範圍外阻塞，依已載入規範與已載入的憲法 Rule 將 `阻塞` 與 `恢復條件` 寫入 `implement-run.md`。
 8. Write 若處置是修正，依已載入規範與已載入的憲法 Rule 更新 `implement-run.md` 的 `失敗原因`。
-9. Write 若處置是修正，依已載入規範修正目標檔案，回到本 Phase 第 2 步，並停止本步驟之後的步驟。
-10. Write 若處置是寫入範圍內阻塞，依已載入規範與已載入的憲法 Rule 將 `阻塞` 與 `恢復條件` 寫入 `implement-run.md`。
-11. Read 若任務驗證通過且尚未載入 `constitution/tasks/tasks.md`，讀取該檔並取得 `tasks.md` 的憲法 Rule；檔案不存在時，憲法 Rule 為空。
-12. Write 若任務驗證通過，依已載入規範與已載入的憲法 Rule 將該任務 checkbox 從 `[ ]` 更新為 `[X]`。
+9. Delegate 若處置是修正且任務標有 TDD 步驟，依已載入規範將同一 TDD 步驟、測試計劃案例位址與目標檔交給 `tdd`，回到本 Phase 第 2 步，並停止本步驟之後的步驟。
+10. Write 若處置是修正且任務沒有 TDD 步驟，依已載入規範修正目標檔案，回到本 Phase 第 2 步，並停止本步驟之後的步驟。
+11. Write 若處置是寫入範圍內阻塞，依已載入規範與已載入的憲法 Rule 將 `阻塞` 與 `恢復條件` 寫入 `implement-run.md`。
+12. Read 若任務驗證通過且尚未載入 `constitution/tasks/tasks.md`，讀取該檔並取得 `tasks.md` 的憲法 Rule；檔案不存在時，憲法 Rule 為空。
+13. Write 若任務驗證通過，依已載入規範與已載入的憲法 Rule 將該任務 checkbox 從 `[ ]` 更新為 `[X]`。
 
 ## Phase 8: 驗證 Checkpoint
 
@@ -102,12 +105,26 @@ metadata:
 
 1. Read 讀取 `implement-run.md` 並取得 `阻塞`。
 2. Read 讀取 `tasks.md` 並取得未完成任務與 Checkpoint 通過紀錄。
-3. Think 依已載入規範決定下一個執行位置是 Phase 4 第 4 步或 Phase 11。
-4. Write 若下一個執行位置是 Phase 4 第 4 步，依已載入規範與已載入的憲法 Rule 清除 `implement-run.md` 的 `失敗原因`，回到 Phase 4 第 4 步，並停止本 Phase 之後的所有步驟。
+3. Read [連續執行規範](rules/連續執行規範.md)並取得結束條件、交付說明排除要求與 STOP and VALIDATE 的繼續要求。
+4. Think 依已載入規範決定下一個執行位置是 Phase 4 第 4 步或 Phase 11。
+5. Write 若下一個執行位置是 Phase 4 第 4 步，依已載入規範與已載入的憲法 Rule 清除 `implement-run.md` 的 `失敗原因`，回到 Phase 4 第 4 步，並停止本 Phase 之後的所有步驟。
 
-## Phase 11: 回報並結束本次執行
+## Phase 11: 標記規格完成狀態
+
+1. Read [規格完成狀態規範](rules/規格完成狀態規範.md)並取得完成狀態的寫入條件與狀態值。
+2. Read 讀取 `implement-run.md` 並取得 `阻塞`。
+3. Read 讀取 `tasks.md` 並取得未完成任務與 Checkpoint 通過紀錄。
+4. Read 讀取目標 `spec.md` 的狀態列；檔案不存在時，規格狀態為空。
+5. Think 依已載入規範決定本次是否滿足完成狀態的寫入條件。
+6. Read 若滿足寫入條件且本次尚未載入，讀取 `constitution/specify/spec.md`，取得 `spec.md` 的憲法 Rule；檔案不存在時，憲法 Rule 為空。
+7. Think 若滿足寫入條件，依已載入規範決定本次是更新目標 `spec.md` 的狀態，或因憲法停止寫入。
+8. Write 若本次是因憲法停止寫入，將拒絕原因寫入回覆。
+9. Write 若本次是更新狀態，依已載入規範與已載入的憲法 Rule 只更新目標 `spec.md` 的狀態列。
+
+## Phase 12: 回報並結束本次執行
 
 1. Read 讀取 `implement-run.md` 並取得 `阻塞` 與 `恢復條件`。
 2. Read 讀取 `tasks.md` 並取得已完成任務、Checkpoint 通過紀錄與未完成任務。
-3. Think 決定完成的任務、驗證結果、Checkpoint 結果、未完成任務、阻塞事項與恢復執行條件。
-4. Write 將完成的任務 ID、修改摘要、驗證結果、是否已打勾、Checkpoint 結果、未完成任務、阻塞事項與恢復執行條件寫入回覆 Artifact，並結束本次執行。
+3. Read 讀取目標 `spec.md` 的狀態列；檔案不存在時，規格狀態為空。
+4. Think 依已載入規範決定完成的任務、驗證結果、Checkpoint 結果、規格狀態、未完成任務、阻塞事項、恢復執行條件與回覆內容。
+5. Write 依已載入規範將完成的任務 ID、修改摘要、驗證結果、是否已打勾、Checkpoint 結果、規格狀態、未完成任務、阻塞事項與恢復執行條件寫入回覆 Artifact，並結束本次執行。
