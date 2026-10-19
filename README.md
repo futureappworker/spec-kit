@@ -4,6 +4,19 @@ Cursor Agent Skills 集合。產品規格由自然語言推到可規劃的 Featu
 
 Skills 放在 `.agents/skills/`。每個 Skill 的入口是該目錄下的 `SKILL.md`。
 
+## 流程
+
+同一功能的文件都在 `specs/<NNN>-<feature-slug>/`。前一步就緒才進入下一步。規格仍有核心缺口時先澄清，答案寫回後再繼續。寫入每份產出時會讀 `constitution/` 的共同套用規範與該產出的憲法 Rule。
+
+1. `specify` 寫 `spec.md` 與 checklist。Status 為 `Needs Clarification` 時，交給 `clarify-over-specs` 提問；回答後由它寫回規格。
+2. `technical-research` 寫 `research.md` 與 `techstack.md`。
+3. `system-analysis` 寫 `plan.md`，再依 Wave 交給 `ui-ux-plan`、`api-plan`、`data-plan` 完成介面分析。
+4. `testplan` 依規格與介面契約寫 `testplan.md`。
+5. `tasks` 依測試計劃寫 `tasks.md`，每個案例拆成紅燈、綠燈、重構。
+6. `implement` 連續執行任務。標有 TDD 步驟的交給 `tdd`，只做該步。任務與 Checkpoint 都完成後，把 `spec.md` 標為 `Implemented`。
+
+Skill 本身的建立與維護走另一條線：已有確認滿意的 Artifact 時，從 `artifact-to-skill-engineering` 倒抽 Template，再交給 `skill-engineering`。直接新建或優化時用 `skill-engineering`：新建先定邊界再寫 SOP，優化先確認根因再改寫。要外移的步驟交給 `skill-derive-rule`、`skill-derive-template` 或 `skill-derive-script`；直接改某一類檔案時，用對應的 `skill-form-*`。
+
 ## 產品規格
 
 把一個功能想法寫成規格，並把會擋住後續規劃的缺口問清楚。寫入產出時會讀取 `constitution/` 的共同套用規範與該產出的憲法 Rule；規則要求停止時不寫入。
