@@ -11,14 +11,14 @@ description: "線上 PVP 1A2B 猜數字的實作任務清單"
 
 **Tests**: 每個原子案例依所屬章的 TDD 順序拆成紅燈、綠燈、重構。紅燈先寫該案例並執行到預期失敗。綠燈只做該案例通過所需的最小實作。重構在該案例綠燈之後；沒有可做的結構調整時保持行為不變，並確認測試仍通過。
 
-**Organization**: Phase 3 起每個使用者故事對應 testplan.md 的一則使用者故事，最後一個 Phase 對應跨故事章。有案例的介面才用 `###` 開端點小節。User Story 1 與 User Story 2 都含後端房間 API 與前端對局畫面。Setup 與 Foundational 沒有案例，不標 TDD 步驟。
+**Organization**: Phase 3 起每個使用者故事對應 testplan.md 的一則使用者故事。全部使用者故事之後，每條有案例的全域 NFR 各一個 Phase。有案例的介面才用 `###` 開端點小節。User Story 1 與 User Story 2 都含後端房間 API 與前端對局畫面。NFR-G-001 與 NFR-G-003 各一個 Phase。Setup 與 Foundational 沒有案例，不標 TDD 步驟。
 
 ## Format: `[ID] [P?] [Story] Description`
 
 - **[P]**: 可平行（不同檔案、不依賴同階段尚未完成的任務）。同一章的紅燈、綠燈、重構依該章順序串行，不標 [P]
-- **[Story]**: 該任務所屬使用者故事（US1、US2）。跨故事任務不標 [Story]
+- **[Story]**: 該任務所屬使用者故事（US1、US2）。全域 NFR 任務不標 [Story]
 - 描述含精確檔案路徑
-- 使用者故事與跨故事章的端點小節使用 `###`。端點小節只標 **Codebase**
+- 使用者故事與全域 NFR Phase 的端點小節使用 `###`。端點小節只標 **Codebase**
 - **TDD 步驟** 寫在有案例的任務下方，值為 `紅燈`、`綠燈` 或 `重構` 之一
 - **References** 寫在任務正下方，一行一個位址。TDD 任務兩行：`testplan.md#{案例 ID}`，以及該案例受測操作的一個契約位址。後端任務不寫 DBML 或畫面。前端畫面任務不寫 OpenAPI 或 DBML
 - 位址寫法：案例用 `testplan.md#BE-1.1` 這種案例 ID；HTTP 操作用 `contracts/openapi.yaml#/paths/~1{path}/{method}`（`/` 寫成 `~1`）；畫面用 `contracts/interface.pen#{frameId}`；DBML 用 `contracts/schema.dbml#Table/{name}`；技術選型用 `techstack.md#採用技術/{Area}`；目錄用 `plan.md#原始碼：儲存庫根目錄`
@@ -157,28 +157,53 @@ description: "線上 PVP 1A2B 猜數字的實作任務清單"
 
 ---
 
-## Phase 5: 跨故事 - 房間資料可再讀
+## Phase 5: 全域 NFR - NFR-G-001 失敗後已進入的房間仍保留
 
-**Purpose**: 已寫入的等待房間可經由另一條連到同一資料庫的連線讀回
+**Purpose**: 玩家已進入房間後，若下一次請求失敗，該房間仍可被讀回
 
 ### 後端端點：後端房間 API
 
 **Codebase**: `backend/src/rooms/`、`backend/tests/`
 
-- [ ] T021 紅燈：在 `backend/tests/integration/reread-room.test.ts` 寫入 BE-10.1，並執行到預期失敗
+- [ ] T021 紅燈：在 `backend/tests/integration/retain-room-on-failure.test.ts` 寫入 NFR-G-001，並執行到預期失敗
   - **TDD 步驟**: 紅燈
-  - **References**: `testplan.md#BE-10.1`
+  - **References**: `testplan.md#NFR-G-001`
   - **References**: `contracts/openapi.yaml#/paths/~1api~1rooms~1{roomId}/get`
-- [ ] T022 綠燈：在 `backend/src/rooms/read.ts` 做 BE-10.1 通過所需的最小實作
+- [ ] T022 綠燈：在 `backend/src/rooms/read.ts` 做 NFR-G-001 通過所需的最小實作
   - **TDD 步驟**: 綠燈
-  - **References**: `testplan.md#BE-10.1`
+  - **References**: `testplan.md#NFR-G-001`
   - **References**: `contracts/openapi.yaml#/paths/~1api~1rooms~1{roomId}/get`
-- [ ] T023 重構：只整理 BE-10.1 綠燈觸及的實作；沒有可做的結構調整時保持行為不變，並確認測試仍通過
+- [ ] T023 重構：只整理 NFR-G-001 綠燈觸及的實作；沒有可做的結構調整時保持行為不變，並確認測試仍通過
   - **TDD 步驟**: 重構
-  - **References**: `testplan.md#BE-10.1`
+  - **References**: `testplan.md#NFR-G-001`
   - **References**: `contracts/openapi.yaml#/paths/~1api~1rooms~1{roomId}/get`
 
-**Checkpoint**: 等待中的房間可經由另一條資料庫連線讀回
+**Checkpoint**: 進入房間成功後，下一次請求失敗時，GET 仍讀得到等待中的房主
+
+---
+
+## Phase 6: 全域 NFR - NFR-G-003 房間讀取在 1 秒內回傳
+
+**Purpose**: 已存在的房間被讀取時，1 秒內回傳
+
+### 後端端點：後端房間 API
+
+**Codebase**: `backend/src/rooms/`、`backend/tests/`
+
+- [ ] T024 紅燈：在 `backend/tests/integration/read-room-latency.test.ts` 寫入 NFR-G-003，並執行到預期失敗
+  - **TDD 步驟**: 紅燈
+  - **References**: `testplan.md#NFR-G-003`
+  - **References**: `contracts/openapi.yaml#/paths/~1api~1rooms~1{roomId}/get`
+- [ ] T025 綠燈：在 `backend/src/rooms/read.ts` 做 NFR-G-003 通過所需的最小實作
+  - **TDD 步驟**: 綠燈
+  - **References**: `testplan.md#NFR-G-003`
+  - **References**: `contracts/openapi.yaml#/paths/~1api~1rooms~1{roomId}/get`
+- [ ] T026 重構：只整理 NFR-G-003 綠燈觸及的實作；沒有可做的結構調整時保持行為不變，並確認測試仍通過
+  - **TDD 步驟**: 重構
+  - **References**: `testplan.md#NFR-G-003`
+  - **References**: `contracts/openapi.yaml#/paths/~1api~1rooms~1{roomId}/get`
+
+**Checkpoint**: 已進入的房間在 1 秒內可被讀回
 
 ---
 
@@ -189,7 +214,8 @@ description: "線上 PVP 1A2B 猜數字的實作任務清單"
 - **Setup (Phase 1)**: 無前置，可立即開始
 - **Foundational (Phase 2)**: 依賴 Setup；完成前阻擋全部使用者故事
 - **User Stories (Phase 3+)**: 都依賴 Foundational
-- **跨故事 (Phase 5)**: 依賴 User Story 1 與 User Story 2 完成
+- **全域 NFR NFR-G-001 (Phase 5)**: 依賴 User Story 1 與 User Story 2 完成
+- **全域 NFR NFR-G-003 (Phase 6)**: 接在 NFR-G-001 之後
 
 ### User Story Dependencies
 
@@ -202,6 +228,7 @@ description: "線上 PVP 1A2B 猜數字的實作任務清單"
 - 綠燈只滿足該案例的預期輸出，不提前實作下一個案例
 - 重構只整理該案例綠燈觸及的實作
 - 執行某個任務時只讀該任務列出的位址
+- 全域 NFR Phase 的案例順序沿用該需求在 testplan.md 的 TDD 順序，每個案例仍是紅燈、綠燈、重構
 
 ### Parallel Opportunities
 
@@ -224,7 +251,8 @@ description: "線上 PVP 1A2B 猜數字的實作任務清單"
 1. Setup + Foundational → 基礎可用
 2. User Story 1 → 獨立驗證進房、同時進房與進房畫面 → MVP
 3. User Story 2 → 獨立驗證房主開始對局與雙方畫面顯示輪到房主
-4. 跨故事 → 驗證房間寫入後換連線仍可讀回
+4. 全域 NFR NFR-G-001 → 驗證失敗後已進入的房間仍可讀回
+5. 全域 NFR NFR-G-003 → 驗證已進入的房間在 1 秒內可被讀回
 
 ---
 
@@ -234,4 +262,4 @@ description: "線上 PVP 1A2B 猜數字的實作任務清單"
 - 每個開發任務的 **TDD 步驟** 是紅燈、綠燈、重構三者之一
 - 紅燈任務以該案例作為已確認接縫，從撰寫失敗測試開始
 - 重構任務的完成包含不調整結構，並確認該案例測試仍通過
-- NFR-G-002 在 testplan.md 列為不列為案例，本清單不產生任務
+- NFR-G-002 在 testplan.md 列為不列為案例，FR-G-004 是全域功能需求；兩者都不產生任務

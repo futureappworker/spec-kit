@@ -1,7 +1,7 @@
 ---
 
 name: tasks
-description: 在 /testplan 之後，依 testplan.md 的 User Story 與原子案例產出 tasks.md；每個案例依序拆成紅燈、綠燈、重構三個任務。
+description: 在 /testplan 之後，依 testplan.md 的 User Story、全域 NFR 與各章 TDD 順序產出 tasks.md；每個案例依序拆成紅燈、綠燈、重構三個任務。每條有案例的全域 NFR 各成一個 Phase，排在全部使用者故事之後。
 metadata:
   references:
     - project: GitHub Spec Kit
@@ -19,18 +19,19 @@ metadata:
 ## Phase 1: 讀取輸入
 
 1. Read 讀取使用者輸入並取得目標功能目錄、既有 tasks.md 與本次是建立或更新。
-2. Think 決定任務清單路徑為該功能 `plan.md` 所在目錄的 `tasks.md`。
+2. Read [任務清單輸出位置規範](rules/任務清單輸出位置規範.md)並取得輸出位置與上游輸入要求。
+3. Think 依已載入規範決定任務清單路徑。
 
 
 
 ## Phase 2: 對齊測試計劃
 
-1. Read 讀取目標功能的 `testplan.md` 並取得使用者故事章、跨故事章、各章 TDD 順序、原子案例與不列為案例。
+1. Read 讀取目標功能的 `testplan.md` 並取得使用者故事章、全域 NFR 案例、各章 TDD 順序、原子案例與不列為案例。
 2. Read 讀取目標功能的 `plan.md` 並取得原始碼落地位置與系統介面盤點。
 3. Read 讀取目標功能的 `techstack.md` 採用技術表並取得 Setup 與 Foundational 要引用的 Area。
-4. Read [任務清單輸出規範](rules/任務清單輸出規範.md)並取得輸出位置、階段、TDD 步驟與位址要求。
-5. Think 決定 `testplan.md`、`plan.md` 與 `techstack.md` 是否足以產生任務清單。
-6. Think 當足以產生時，依已載入規範決定 Setup、Foundational，以及每個原子案例的紅燈、綠燈與重構任務。
+4. Think 依已載入規範決定 `testplan.md`、`plan.md` 與 `techstack.md` 是否足以產生任務清單。
+5. Read [任務清單輸出規範](rules/任務清單輸出規範.md)並取得階段、端點、TDD 步驟、任務標記與位址要求。
+6. Think 當足以產生時，依已載入規範決定 Setup、Foundational、每個使用者故事 Phase，以及每個全域 NFR Phase 的紅燈、綠燈與重構任務。
 
 
 
@@ -52,7 +53,7 @@ metadata:
 
 ## Phase 4: 檢查任務清單
 
-1. Read 依已載入規範、已載入樣板與已載入的憲法 Rule 檢查目標 `tasks.md` 是否照抄範例任務、案例沒有拆成紅燈綠燈重構、任務沒有 TDD 步驟或位址、位址跨端或憲法未通過，並列出不符合項目。
+1. Read 依已載入規範、已載入樣板與已載入的憲法 Rule 檢查目標 `tasks.md`，並列出不符合項目。
 
 
 

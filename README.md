@@ -32,7 +32,7 @@ Skill 本身的建立與維護走另一條線：已有確認滿意的 Artifact �
 | [ui-ux-plan](.agents/skills/ui-ux-plan/SKILL.md) | 分析前端端點、瀏覽器互動、畫面狀態與使用者流程，依 Pencil 樣板 `templates/interface.pen` 產出可供 API 與資料規劃對齊的 UI/UX 介面分析。 |
 | [api-plan](.agents/skills/api-plan/SKILL.md) | 分析後端端點、API、WebSocket、服務狀態機與權威判定邊界，依 OpenAPI 樣板 `templates/openapi.yaml` 產出可供前端與資料規劃對齊的 API 介面分析。 |
 | [data-plan](.agents/skills/data-plan/SKILL.md) | 分析資料庫端點、持久化模型、查詢、快照與資料保留邊界，依 DBML 樣板 `templates/schema.dbml` 產出可供前端與 API 規劃對齊的資料介面分析。 |
-| [tasks](.agents/skills/tasks/SKILL.md) | 在 `testplan.md` 完成後，依測試計劃的 User Story、跨故事章與各章 TDD 順序產出 `tasks.md`。每個原子案例依序拆成紅燈、綠燈、重構三個任務，並同時指向該案例與它的契約位址。 |
+| [tasks](.agents/skills/tasks/SKILL.md) | 在 `testplan.md` 完成後，依測試計劃的 User Story、全域 NFR 與各章 TDD 順序產出 `tasks.md`。每個原子案例依序拆成紅燈、綠燈、重構三個任務，並同時指向該案例與它的契約位址。每條有案例的全域 NFR 各成一個 Phase，排在全部使用者故事之後。 |
 | [implement](.agents/skills/implement/SKILL.md) | 依 feature 目錄中的 `tasks.md` 連續執行安全任務批次，直到任務全部完成。標有 TDD 步驟的任務交給 `tdd`，只做紅燈、綠燈或重構其中一步；其餘任務逐任務只讀該任務列出的 References。驗證通過後才把 checkbox 從 `[ ]` 改為 `[X]`。Checkpoint 驗證失敗時，先修正該 Checkpoint 所屬任務再重新驗證。任務與已到達的 Checkpoint 都完成且沒有阻塞時，把該 feature 的 `spec.md` 狀態改為 `Implemented`。 |
 | [tdd](.agents/skills/tdd/SKILL.md) | 以紅燈、綠燈、重構推進一條已確認接縫。使用者直接呼叫且未指定步驟時，先確認接縫，再跑完整循環。`implement` 傳入一個步驟與測試計劃案例時，該案例就是已確認接縫，本次只做那一步。受測部位是瀏覽器時，用 Playwright 寫並執行該案例。 |
 | [constitution](.agents/skills/constitution/SKILL.md) | 依使用者需求撰寫專案憲法。使用者要求必要憲法、共同憲法、共用憲法、共同套用，或 `constitution/共同/憲法套用規範.md` 時，若該檔不存在，先寫入基本版。要為已確認的 Skill 產出增量撰寫憲法 Rule 時，目標 Skill、產出物、部位與必備或禁止內容能從描述判斷則直接採用，判斷不出來才問下一個缺口，一次寫入一條 Rule。 |

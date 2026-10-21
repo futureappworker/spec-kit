@@ -11,14 +11,14 @@ description: "{{TASKS_DESCRIPTION}}"
 
 **Tests**: 每個原子案例依所屬章的 TDD 順序拆成紅燈、綠燈、重構。紅燈先寫該案例並執行到預期失敗。綠燈只做該案例通過所需的最小實作。重構在該案例綠燈之後；沒有可做的結構調整時保持行為不變，並確認測試仍通過。
 
-**Organization**: Phase 3 起每個使用者故事對應 testplan.md 的一則使用者故事，最後一個 Phase 對應跨故事章。有案例的介面才用 `###` 開端點小節。{{STORY_ENDPOINT_SUMMARY}} Setup 與 Foundational 沒有案例，不標 TDD 步驟。
+**Organization**: Phase 3 起每個使用者故事對應 testplan.md 的一則使用者故事。全部使用者故事之後，每條有案例的全域 NFR 各一個 Phase。有案例的介面才用 `###` 開端點小節。{{STORY_ENDPOINT_SUMMARY}} {{GLOBAL_NFR_PHASE_SUMMARY}} Setup 與 Foundational 沒有案例，不標 TDD 步驟。
 
 ## Format: `[ID] [P?] [Story] Description`
 
 - **[P]**: 可平行（不同檔案、不依賴同階段尚未完成的任務）。同一章的紅燈、綠燈、重構依該章順序串行，不標 [P]
-- **[Story]**: 該任務所屬使用者故事（{{STORY_LABELS}}）。跨故事任務不標 [Story]
+- **[Story]**: 該任務所屬使用者故事（{{STORY_LABELS}}）。全域 NFR 任務不標 [Story]
 - 描述含精確檔案路徑
-- 使用者故事與跨故事章的端點小節使用 `###`。端點小節只標 **Codebase**
+- 使用者故事與全域 NFR Phase 的端點小節使用 `###`。端點小節只標 **Codebase**
 - **TDD 步驟** 寫在有案例的任務下方，值為 `紅燈`、`綠燈` 或 `重構` 之一
 - **References** 寫在任務正下方，一行一個位址。TDD 任務兩行：`testplan.md#{案例 ID}`，以及該案例受測操作的一個契約位址。後端任務不寫 DBML 或畫面。前端畫面任務不寫 OpenAPI 或 DBML
 - 位址寫法：案例用 `testplan.md#{{CASE_ID_EXAMPLE}}` 這種案例 ID；HTTP 操作用 `contracts/openapi.yaml#/paths/~1{path}/{method}`（`/` 寫成 `~1`）；畫面用 `contracts/interface.pen#{frameId}`；DBML 用 `contracts/schema.dbml#Table/{name}`；技術選型用 `techstack.md#採用技術/{Area}`；目錄用 `plan.md#原始碼：儲存庫根目錄`
@@ -157,13 +157,13 @@ description: "{{TASKS_DESCRIPTION}}"
 
 ---
 
-## Phase 5: 跨故事 - {{CROSS_STORY_TITLE}}
+## Phase 5: 全域 NFR - {{GLOBAL_NFR_1_ID}} {{GLOBAL_NFR_1_TITLE}}
 
-**Purpose**: {{CROSS_STORY_PURPOSE}}
+**Purpose**: {{GLOBAL_NFR_1_PURPOSE}}
 
-### {{CROSS_STORY_BACKEND_HEADING}}
+### {{GLOBAL_NFR_1_BACKEND_HEADING}}
 
-**Codebase**: `{{CROSS_STORY_BACKEND_CODEBASE}}`
+**Codebase**: `{{GLOBAL_NFR_1_BACKEND_CODEBASE}}`
 
 - [ ] {{T021_TASK}}
   - **TDD 步驟**: 紅燈
@@ -178,7 +178,32 @@ description: "{{TASKS_DESCRIPTION}}"
   - **References**: `{{T023_REFERENCE_1}}`
   - **References**: `{{T023_REFERENCE_2}}`
 
-**Checkpoint**: {{CROSS_STORY_CHECKPOINT}}
+**Checkpoint**: {{GLOBAL_NFR_1_CHECKPOINT}}
+
+---
+
+## Phase 6: 全域 NFR - {{GLOBAL_NFR_2_ID}} {{GLOBAL_NFR_2_TITLE}}
+
+**Purpose**: {{GLOBAL_NFR_2_PURPOSE}}
+
+### {{GLOBAL_NFR_2_BACKEND_HEADING}}
+
+**Codebase**: `{{GLOBAL_NFR_2_BACKEND_CODEBASE}}`
+
+- [ ] {{T024_TASK}}
+  - **TDD 步驟**: 紅燈
+  - **References**: `{{T024_REFERENCE_1}}`
+  - **References**: `{{T024_REFERENCE_2}}`
+- [ ] {{T025_TASK}}
+  - **TDD 步驟**: 綠燈
+  - **References**: `{{T025_REFERENCE_1}}`
+  - **References**: `{{T025_REFERENCE_2}}`
+- [ ] {{T026_TASK}}
+  - **TDD 步驟**: 重構
+  - **References**: `{{T026_REFERENCE_1}}`
+  - **References**: `{{T026_REFERENCE_2}}`
+
+**Checkpoint**: {{GLOBAL_NFR_2_CHECKPOINT}}
 
 ---
 
@@ -189,7 +214,8 @@ description: "{{TASKS_DESCRIPTION}}"
 - **Setup (Phase 1)**: 無前置，可立即開始
 - **Foundational (Phase 2)**: 依賴 Setup；完成前阻擋全部使用者故事
 - **User Stories (Phase 3+)**: 都依賴 Foundational
-- **跨故事 (Phase 5)**: {{CROSS_STORY_DEPENDENCY}}
+- **全域 NFR {{GLOBAL_NFR_1_ID}} (Phase 5)**: {{GLOBAL_NFR_1_DEPENDENCY}}
+- **全域 NFR {{GLOBAL_NFR_2_ID}} (Phase 6)**: {{GLOBAL_NFR_2_DEPENDENCY}}
 
 ### User Story Dependencies
 
@@ -202,6 +228,7 @@ description: "{{TASKS_DESCRIPTION}}"
 - 綠燈只滿足該案例的預期輸出，不提前實作下一個案例
 - 重構只整理該案例綠燈觸及的實作
 - 執行某個任務時只讀該任務列出的位址
+- 全域 NFR Phase 的案例順序沿用該需求在 testplan.md 的 TDD 順序，每個案例仍是紅燈、綠燈、重構
 
 ### Parallel Opportunities
 
@@ -224,7 +251,8 @@ description: "{{TASKS_DESCRIPTION}}"
 1. Setup + Foundational → 基礎可用
 2. {{INCREMENTAL_USER_STORY_1}}
 3. {{INCREMENTAL_USER_STORY_2}}
-4. {{INCREMENTAL_CROSS_STORY}}
+4. {{INCREMENTAL_GLOBAL_NFR_1}}
+5. {{INCREMENTAL_GLOBAL_NFR_2}}
 
 ---
 
