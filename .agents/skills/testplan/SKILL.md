@@ -1,6 +1,6 @@
 ---
 name: testplan
-description: 在 /system-analysis 之後、/tasks 之前，依規格與上游系統分析制定測試計劃。使用者故事各成一章，其後每條有案例的全域 NFR 各成一章。使用時機：使用者要測試計劃、testplan，或要求在 tasks 之前先定義案例、Fixture 與各章 TDD 順序。
+description: 在 /system-analysis 之後、/tasks 之前，依規格與上游系統分析制定測試計劃。使用者故事各成一章，其後每條有案例的全域 NFR 各成一章，最後在有跨故事旅程時加一章總驗收。使用時機：使用者要測試計劃、testplan，或要求在 tasks 之前先定義案例、Fixture 與各章 TDD 順序。
 ---
 
 # SOP
@@ -20,8 +20,8 @@ description: 在 /system-analysis 之後、/tasks 之前，依規格與上游系
 
 ## Phase 3: 推導測試計劃內容
 
-1. Read [測試計劃品質規範](rules/測試計劃品質規範.md)並取得上游介面、使用者故事章、全域 NFR 章、Fixture、原子案例、不列為案例與各章 TDD 順序要求。
-2. Think 依已載入規範決定上游介面索引、共用 Arrange Fixtures、使用者故事章、全域 NFR 章、不列為案例與各章 TDD 順序。
+1. Read [測試計劃品質規範](rules/測試計劃品質規範.md)並取得上游介面、使用者故事章、全域 NFR 章、總驗收章、Fixture、原子案例、不列為案例與各章 TDD 順序要求。
+2. Think 依已載入規範決定上游介面索引、共用 Arrange Fixtures、使用者故事章、全域 NFR 章、總驗收章、不列為案例與各章 TDD 順序。
 
 ## Phase 4: 撰寫測試計劃
 

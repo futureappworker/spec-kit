@@ -187,6 +187,31 @@
 - **本案例不驗證 ( Not Verified )** {{CASE_NOT_VERIFIED_8}}
 - **預期 RED 原因 ( Expected Red )** {{CASE_EXPECTED_RED_8}}
 
+## 總驗收
+
+{{ACCEPTANCE_SUMMARY}}
+
+### TDD 順序 ( Atomic Order )
+
+#### 瀏覽器端到端測試
+
+1. {{CASE_ID_9}}
+
+### {{CASE_ID_9}} {{CASE_TITLE_9}}
+
+- **對應需求 ( Traces )** {{CASE_TRACES_9}}
+- **契約位址 ( Contract )** `{{CASE_CONTRACT_9}}`
+- **唯一測試意圖 ( Intent )** {{CASE_INTENT_9}}
+- **受測部位 ( Subject )** {{CASE_SUBJECT_9}}
+- **受測操作 ( Operation )** {{CASE_OPERATION_9}}
+- **前置條件 ( Arrange )** {{CASE_ARRANGE_9}}
+- **操作 ( Act )** {{CASE_ACT_9}}
+- **觀測通道 ( Observation Channel )** {{CASE_CHANNEL_9}}
+- **預期輸出 ( Expected Output )** {{CASE_EXPECTED_9}}
+- **必須維持不變 ( Must Stay )** {{CASE_MUST_STAY_9}}
+- **本案例不驗證 ( Not Verified )** {{CASE_NOT_VERIFIED_9}}
+- **預期 RED 原因 ( Expected Red )** {{CASE_EXPECTED_RED_9}}
+
 ## 不列為案例
 
 - **{{EXCLUDED_REQUIREMENT_1}}**：{{EXCLUDED_STATEMENT_1}}

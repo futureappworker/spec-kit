@@ -12,8 +12,8 @@ Skills 放在 `.agents/skills/`。每個 Skill 的入口是該目錄下的 `SKIL
 2. `technical-research` 寫 `research.md` 與 `techstack.md`。
 3. `system-analysis` 寫 `plan.md`，再依 Wave 交給 `ui-ux-plan`、`api-plan`、`data-plan` 完成介面分析。
 4. `testplan` 依規格與介面契約寫 `testplan.md`。
-5. `tasks` 依測試計劃寫 `tasks.md`，每個案例拆成紅燈、綠燈、重構。
-6. `implement` 依序一次實作一個未完成任務，直到全部完成。標有 TDD 步驟的交給 `tdd`，只做該步。任務全部完成後，把 `spec.md` 標為 `Implemented`。
+5. `tasks` 依測試計劃寫 `tasks.md`。使用者故事與全域 NFR 的每個案例拆成紅燈、綠燈、重構。總驗收章的每個案例只產生一個必須通過的任務。
+6. `implement` 依序一次實作一個未完成任務，直到全部完成。標有 TDD 步驟的交給 `tdd`，只做該步。總驗收任務寫入案例並執行到通過。任務全部完成後，把 `spec.md` 標為 `Implemented`。
 
 Skill 本身的建立與維護走另一條線：已有確認滿意的 Artifact 時，從 `artifact-to-skill-engineering` 倒抽 Template，再交給 `skill-engineering`。直接新建或優化時用 `skill-engineering`：新建先定邊界再寫 SOP，優化先確認根因再改寫。要外移的步驟交給 `skill-derive-rule`、`skill-derive-template` 或 `skill-derive-script`；直接改某一類檔案時，用對應的 `skill-form-*`。
 
@@ -28,12 +28,12 @@ Skill 本身的建立與維護走另一條線：已有確認滿意的 Artifact �
 | [clarify-over-specs](.agents/skills/clarify-over-specs/SKILL.md) | 在 `/specify` 寫完 `spec.md` 之後做專業需求澄清。`specify` 在狀態為 `Needs Clarification` 時以提問模式交給它；使用者也能直接要求提問或套用答案。先掃描規格覆蓋並依影響挑出最多五題，再委派 `clarify` 提問；使用者回答後，由這個 Skill 把答案寫回規格的對應章節。 |
 | [technical-research](.agents/skills/technical-research/SKILL.md) | 在 `/specify` 產出的 Feature Specification 之後執行，將可進入 planning 的規格推導成 `research.md` 與 `techstack.md`。`research.md` 聚焦技術決策、理由與替代方案；`techstack.md` 彙整採用、延後或不採用的技術堆疊與 planning 約束，不另列後續技術問題。選型資訊不足時把缺口交回使用者，且不得把這兩份文件標為 Ready for Planning。 |
 | [system-analysis](.agents/skills/system-analysis/SKILL.md) | 依 Feature Specification、同目錄 `research.md` 與 `techstack.md` 產出並執行 `plan.md` 中的系統分析規劃。先盤點技術端點與系統介面，再依依賴關係排成分析 Wave，並委派 `ui-ux-plan`、`api-plan`、`data-plan` 完成對應介面分析。介面契約需要修改時，交回擁有該契約的 Planner Skill 修正。 |
-| [testplan](.agents/skills/testplan/SKILL.md) | 在系統介面分析完成後，依 `spec.md`、`plan.md` 與契約檔制定 `testplan.md`。使用者故事各成一章，其後每條有案例的全域 NFR 各成一章。使用者故事中可觀察的 FR 與 NFR，以及有可觀察結果的全域 NFR，寫成原子案例，每個案例指向一個上游契約位址。各章自帶 TDD 順序。全域功能需求、成功標準，以及沒有可觀察結果的全域 NFR，列為不列為案例。 |
+| [testplan](.agents/skills/testplan/SKILL.md) | 在系統介面分析完成後，依 `spec.md`、`plan.md` 與契約檔制定 `testplan.md`。使用者故事各成一章，其後每條有案例的全域 NFR 各成一章；有跨故事旅程時，最後加一章總驗收。使用者故事中可觀察的 FR 與 NFR，以及有可觀察結果的全域 NFR，寫成原子案例，每個案例指向一個上游契約位址。各章自帶 TDD 順序。全域功能需求、沒有可觀察結果的全域 NFR，以及不能單次觀察的成功標準，列為不列為案例。 |
 | [ui-ux-plan](.agents/skills/ui-ux-plan/SKILL.md) | 分析前端端點、瀏覽器互動、畫面狀態與使用者流程，依 Pencil 樣板 `templates/interface.pen` 產出可供 API 與資料規劃對齊的 UI/UX 介面分析。 |
 | [api-plan](.agents/skills/api-plan/SKILL.md) | 分析後端端點、API、WebSocket、服務狀態機與權威判定邊界，依 OpenAPI 樣板 `templates/openapi.yaml` 產出可供前端與資料規劃對齊的 API 介面分析。 |
 | [data-plan](.agents/skills/data-plan/SKILL.md) | 分析資料庫端點、持久化模型、查詢、快照與資料保留邊界，依 DBML 樣板 `templates/schema.dbml` 產出可供前端與 API 規劃對齊的資料介面分析。 |
-| [tasks](.agents/skills/tasks/SKILL.md) | 在 `testplan.md` 完成後，依測試計劃的 User Story、全域 NFR 與各章 TDD 順序產出 `tasks.md`。每個原子案例依序拆成紅燈、綠燈、重構三個任務，並同時指向該案例與它的契約位址。每條有案例的全域 NFR 各成一個 Phase，排在全部使用者故事之後。 |
-| [implement](.agents/skills/implement/SKILL.md) | 依 feature 目錄中的 `tasks.md`，依序一次實作一個未完成任務，直到全部完成。標有 TDD 步驟的任務交給 `tdd`，只做紅燈、綠燈或重構其中一步；其餘任務只讀該任務列出的 References。該任務驗證通過後才把 checkbox 從 `[ ]` 改為 `[X]`。`checklists/` 仍有未勾項目且未允許略過時，先停下詢問。全部任務完成後，把該 feature 的 `spec.md` 狀態改為 `Implemented`。 |
+| [tasks](.agents/skills/tasks/SKILL.md) | 在 `testplan.md` 完成後，依測試計劃的 User Story、全域 NFR、總驗收與各章 TDD 順序產出 `tasks.md`。使用者故事與全域 NFR 的每個原子案例依序拆成紅燈、綠燈、重構三個任務，並同時指向該案例與它的契約位址。每條有案例的全域 NFR 各成一個 Phase，排在全部使用者故事之後。有總驗收章時，最後加一個總驗收 Phase，該章每個案例只產生一個必須通過的任務。 |
+| [implement](.agents/skills/implement/SKILL.md) | 依 feature 目錄中的 `tasks.md`，依序一次實作一個未完成任務，直到全部完成。標有 TDD 步驟的任務交給 `tdd`，只做紅燈、綠燈或重構其中一步。總驗收任務由 implement 寫入案例並執行到通過，不交給 `tdd`。其餘任務只讀該任務列出的 References。該任務驗證通過後才把 checkbox 從 `[ ]` 改為 `[X]`。`checklists/` 仍有未勾項目且未允許略過時，先停下詢問。全部任務完成後，把該 feature 的 `spec.md` 狀態改為 `Implemented`。 |
 | [tdd](.agents/skills/tdd/SKILL.md) | 以紅燈、綠燈、重構推進一條已確認接縫。使用者直接呼叫且未指定步驟時，先確認接縫，再跑完整循環。`implement` 傳入一個步驟與測試計劃案例時，該案例就是已確認接縫，本次只做那一步。受測部位是瀏覽器時，用 Playwright 寫並執行該案例。 |
 | [constitution](.agents/skills/constitution/SKILL.md) | 依使用者需求撰寫專案憲法。使用者要求必要憲法、共同憲法、共用憲法、共同套用，或 `constitution/共同/憲法套用規範.md` 時，若該檔不存在，先寫入基本版。要為已確認的 Skill 產出增量撰寫憲法 Rule 時，目標 Skill、產出物、部位與必備或禁止內容能從描述判斷則直接採用，判斷不出來才問下一個缺口，一次寫入一條 Rule。 |
 

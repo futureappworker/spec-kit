@@ -1,7 +1,7 @@
 ---
 
 name: tasks
-description: 在 /testplan 之後，依 testplan.md 的 User Story、全域 NFR 與各章 TDD 順序產出 tasks.md；每個案例依序拆成紅燈、綠燈、重構三個任務。每條有案例的全域 NFR 各成一個 Phase，排在全部使用者故事之後。
+description: 在 /testplan 之後，依 testplan.md 的 User Story、全域 NFR、總驗收與各章 TDD 順序產出 tasks.md。使用者故事與全域 NFR 的每個案例依序拆成紅燈、綠燈、重構三個任務。每條有案例的全域 NFR 各成一個 Phase，排在全部使用者故事之後。有總驗收章時，最後加一個總驗收 Phase，該章每個案例只產生一個必須通過的任務。
 metadata:
   references:
     - project: GitHub Spec Kit
@@ -26,12 +26,12 @@ metadata:
 
 ## Phase 2: 對齊測試計劃
 
-1. Read 讀取目標功能的 `testplan.md` 並取得使用者故事章、全域 NFR 案例、各章 TDD 順序、原子案例與不列為案例。
+1. Read 讀取目標功能的 `testplan.md` 並取得使用者故事章、全域 NFR 案例、總驗收章、各章 TDD 順序、原子案例與不列為案例。
 2. Read 讀取目標功能的 `plan.md` 並取得原始碼落地位置與系統介面盤點。
 3. Read 讀取目標功能的 `techstack.md` 採用技術表並取得 Setup 與 Foundational 要引用的 Area。
 4. Think 依已載入規範決定 `testplan.md`、`plan.md` 與 `techstack.md` 是否足以產生任務清單。
 5. Read [任務清單輸出規範](rules/任務清單輸出規範.md)並取得階段、端點、TDD 步驟、任務標記與位址要求。
-6. Think 當足以產生時，依已載入規範決定 Setup、Foundational、每個使用者故事 Phase，以及每個全域 NFR Phase 的紅燈、綠燈與重構任務。
+6. Think 當足以產生時，依已載入規範決定 Setup、Foundational、每個使用者故事 Phase、每個全域 NFR Phase 的紅燈、綠燈與重構任務，以及總驗收 Phase 的通過任務。
 
 
 
