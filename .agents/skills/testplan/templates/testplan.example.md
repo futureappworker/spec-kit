@@ -2,7 +2,7 @@
 
 **輸入 ( Input )**：`specs/001-online-pvp-1a2b/spec.md`、`specs/001-online-pvp-1a2b/plan.md`、`specs/001-online-pvp-1a2b/contracts/openapi.yaml`、`specs/001-online-pvp-1a2b/contracts/interface.pen`
 
-案例的受測操作只使用契約檔已有的操作。故事歸屬、FR/NFR 索引與斷言字面值來自 `spec.md`。這份計劃不重寫呼叫契約。
+案例的受測操作只使用契約檔已有的操作。故事歸屬、全域 NFR 歸屬、FR/NFR 索引與斷言字面值來自 `spec.md`。這份計劃不重寫呼叫契約。
 
 ## 上游介面索引 ( Upstream Interfaces )
 
@@ -137,31 +137,57 @@
 - **本案例不驗證 ( Not Verified )** 輪到誰、猜測內容、勝負。
 - **預期 RED 原因 ( Expected Red )** 按下開始後超過 1 秒，任一方畫面仍沒有「對局中」。
 
-## 跨故事 - 房間資料可再讀
+## 全域 NFR - NFR-G-001 失敗後已進入的房間仍保留
 
-已寫入的房間必須能由另一條連到同一資料庫的連線讀回。這一章不屬於單一使用者故事。
+玩家已進入房間後，若下一次請求失敗，該房間仍可被讀回。
 
 ### TDD 順序 ( Atomic Order )
 
 #### 單元與服務測試
 
-1. BE-10.1
+1. NFR-G-001
 
-### BE-10.1 房間寫入後換一條資料庫連線仍讀得到同一場
+### NFR-G-001 進入房間成功後請求失敗，房間仍可被讀回
 
-- **對應需求 ( Traces )** FR-G-004
+- **對應需求 ( Traces )** NFR-G-001
 - **契約位址 ( Contract )** `contracts/openapi.yaml#/paths/~1api~1rooms~1{roomId}/get`
-- **唯一測試意圖 ( Intent )** 另一個連到同一資料庫的後端，用同一個 `GET` 讀得到剛寫入的房間。
+- **唯一測試意圖 ( Intent )** 玩家已進入房間後，下一次請求失敗，該房間仍可被讀回。
 - **受測部位 ( Subject )** 後端房間 API
 - **受測操作 ( Operation )** `GET /api/rooms/:roomId`
-- **前置條件 ( Arrange )** 玩家A 呼叫 `POST /api/rooms/enter`，`nickname` 為「玩家A」，`roomCode` 為「1234」。保留玩家A 的 `playerId` 與 `roomId`。房間 `status` 為等待對手，`players` 只有房主玩家A、`ready` 為 false。另開一條連到同一資料庫的連線，並用它建立第二個後端。
-- **操作 ( Act )** 由第二個後端，以玩家A 的 `playerId` 讀取同一個 `roomId`。
-- **觀測通道 ( Observation Channel )** 第二個後端這次 `GET` 的回應。
-- **預期輸出 ( Expected Output )** HTTP 200。`roomCode` 為 1234，`status` 為等待對手。`players` 只有房主玩家A、`ready` false。
+- **前置條件 ( Arrange )** 玩家A 呼叫 `POST /api/rooms/enter`，`nickname` 為「玩家A」，`roomCode` 為「1234」，成為房主。保留 `playerId` 與 `roomId`。房間 `status` 為等待對手，`players` 只有房主玩家A、`ready` 為 false。接著呼叫 `POST /api/rooms/:roomId/start`，`playerId` 為「沒有這位玩家」，這次開始失敗。
+- **操作 ( Act )** 以玩家A 的 `playerId` 讀取同一個 `roomId`。
+- **觀測通道 ( Observation Channel )** 這次 `GET` 的回應。
+- **預期輸出 ( Expected Output )** HTTP 200。`roomCode` 為 1234，`status` 為等待對手。`players` 只有房主玩家A、`ready` 為 false。
 - **必須維持不變 ( Must Stay )** 無。
-- **本案例不驗證 ( Not Verified )** 第二個後端再進入房間、祕密答案、猜測紀錄。
-- **預期 RED 原因 ( Expected Red )** 第二個後端讀不到這個 `roomId`，或讀到的不是等待對手的房主玩家A。
+- **本案例不驗證 ( Not Verified )** 開始請求的錯誤內容、第二位玩家、祕密答案、1 秒內回傳。
+- **預期 RED 原因 ( Expected Red )** 開始請求失敗後，GET 讀不到這個 `roomId`，或讀到的不是等待對手的房主玩家A。
 
-### 不列為案例
+## 全域 NFR - NFR-G-003 房間讀取在 1 秒內回傳
+
+已存在的房間被讀取時，1 秒內回傳。
+
+### TDD 順序 ( Atomic Order )
+
+#### 單元與服務測試
+
+1. NFR-G-003
+
+### NFR-G-003 已存在的房間在 1 秒內回傳
+
+- **對應需求 ( Traces )** NFR-G-003
+- **契約位址 ( Contract )** `contracts/openapi.yaml#/paths/~1api~1rooms~1{roomId}/get`
+- **唯一測試意圖 ( Intent )** 已存在的房間被讀取時，1 秒內回傳。
+- **受測部位 ( Subject )** 後端房間 API
+- **受測操作 ( Operation )** `GET /api/rooms/:roomId`
+- **前置條件 ( Arrange )** 玩家A 呼叫 `POST /api/rooms/enter`，`nickname` 為「玩家A」，`roomCode` 為「1234」，成為房主。保留 `playerId` 與 `roomId`。房間 `status` 為等待對手，`players` 只有房主玩家A、`ready` 為 false。尚未讀取這個房間。
+- **操作 ( Act )** 以玩家A 的 `playerId` 讀取同一個 `roomId`，並在送出後 1 秒內讀取回應。
+- **觀測通道 ( Observation Channel )** 送出後 1 秒內的這次 `GET` 回應。
+- **預期輸出 ( Expected Output )** 1 秒內 HTTP 200。`roomCode` 為 1234，`status` 為等待對手。`players` 只有房主玩家A、`ready` 為 false。
+- **必須維持不變 ( Must Stay )** 無。
+- **本案例不驗證 ( Not Verified )** 請求失敗後是否仍保留房間、第二位玩家、祕密答案。
+- **預期 RED 原因 ( Expected Red )** 超過 1 秒才回傳，或回應不是等待對手的房主玩家A。
+
+## 不列為案例
 
 - **NFR-G-002**：玩家應感受到即時回饋。原因：規格原文只有感受描述，沒有時間、數量、可見狀態或失敗後仍須保留的資料。
+- **FR-G-004**：已寫入的房間必須能由另一條連到同一資料庫的連線讀回。原因：全域功能需求不進入任務清單。

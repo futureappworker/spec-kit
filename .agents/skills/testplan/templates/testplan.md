@@ -2,7 +2,7 @@
 
 **輸入 ( Input )**：`{{SPEC_PATH}}`、`{{PLAN_PATH}}`、`{{OPENAPI_PATH}}`、`{{INTERFACE_PEN_PATH}}`
 
-案例的受測操作只使用契約檔已有的操作。故事歸屬、FR/NFR 索引與斷言字面值來自 `spec.md`。這份計劃不重寫呼叫契約。
+案例的受測操作只使用契約檔已有的操作。故事歸屬、全域 NFR 歸屬、FR/NFR 索引與斷言字面值來自 `spec.md`。這份計劃不重寫呼叫契約。
 
 ## 上游介面索引 ( Upstream Interfaces )
 
@@ -90,6 +90,7 @@
 #### 瀏覽器端到端測試
 
 1. {{CASE_ID_5}}
+2. {{CASE_ID_6}}
 
 ### {{CASE_ID_4}} {{CASE_TITLE_4}}
 
@@ -121,16 +122,6 @@
 - **本案例不驗證 ( Not Verified )** {{CASE_NOT_VERIFIED_5}}
 - **預期 RED 原因 ( Expected Red )** {{CASE_EXPECTED_RED_5}}
 
-## 跨故事 - {{CROSS_STORY_TITLE}}
-
-{{CROSS_STORY_SUMMARY}}
-
-### TDD 順序 ( Atomic Order )
-
-#### 單元與服務測試
-
-1. {{CASE_ID_6}}
-
 ### {{CASE_ID_6}} {{CASE_TITLE_6}}
 
 - **對應需求 ( Traces )** {{CASE_TRACES_6}}
@@ -146,6 +137,57 @@
 - **本案例不驗證 ( Not Verified )** {{CASE_NOT_VERIFIED_6}}
 - **預期 RED 原因 ( Expected Red )** {{CASE_EXPECTED_RED_6}}
 
-### 不列為案例
+## 全域 NFR - {{GLOBAL_NFR_1_ID}} {{GLOBAL_NFR_1_TITLE}}
+
+{{GLOBAL_NFR_1_SUMMARY}}
+
+### TDD 順序 ( Atomic Order )
+
+#### 單元與服務測試
+
+1. {{CASE_ID_7}}
+
+### {{CASE_ID_7}} {{CASE_TITLE_7}}
+
+- **對應需求 ( Traces )** {{CASE_TRACES_7}}
+- **契約位址 ( Contract )** `{{CASE_CONTRACT_7}}`
+- **唯一測試意圖 ( Intent )** {{CASE_INTENT_7}}
+- **受測部位 ( Subject )** {{CASE_SUBJECT_7}}
+- **受測操作 ( Operation )** {{CASE_OPERATION_7}}
+- **前置條件 ( Arrange )** {{CASE_ARRANGE_7}}
+- **操作 ( Act )** {{CASE_ACT_7}}
+- **觀測通道 ( Observation Channel )** {{CASE_CHANNEL_7}}
+- **預期輸出 ( Expected Output )** {{CASE_EXPECTED_7}}
+- **必須維持不變 ( Must Stay )** {{CASE_MUST_STAY_7}}
+- **本案例不驗證 ( Not Verified )** {{CASE_NOT_VERIFIED_7}}
+- **預期 RED 原因 ( Expected Red )** {{CASE_EXPECTED_RED_7}}
+
+## 全域 NFR - {{GLOBAL_NFR_2_ID}} {{GLOBAL_NFR_2_TITLE}}
+
+{{GLOBAL_NFR_2_SUMMARY}}
+
+### TDD 順序 ( Atomic Order )
+
+#### 單元與服務測試
+
+1. {{CASE_ID_8}}
+
+### {{CASE_ID_8}} {{CASE_TITLE_8}}
+
+- **對應需求 ( Traces )** {{CASE_TRACES_8}}
+- **契約位址 ( Contract )** `{{CASE_CONTRACT_8}}`
+- **唯一測試意圖 ( Intent )** {{CASE_INTENT_8}}
+- **受測部位 ( Subject )** {{CASE_SUBJECT_8}}
+- **受測操作 ( Operation )** {{CASE_OPERATION_8}}
+- **前置條件 ( Arrange )** {{CASE_ARRANGE_8}}
+- **操作 ( Act )** {{CASE_ACT_8}}
+- **觀測通道 ( Observation Channel )** {{CASE_CHANNEL_8}}
+- **預期輸出 ( Expected Output )** {{CASE_EXPECTED_8}}
+- **必須維持不變 ( Must Stay )** {{CASE_MUST_STAY_8}}
+- **本案例不驗證 ( Not Verified )** {{CASE_NOT_VERIFIED_8}}
+- **預期 RED 原因 ( Expected Red )** {{CASE_EXPECTED_RED_8}}
+
+## 不列為案例
 
 - **{{EXCLUDED_REQUIREMENT_1}}**：{{EXCLUDED_STATEMENT_1}}
+- **{{EXCLUDED_REQUIREMENT_2}}**：{{EXCLUDED_STATEMENT_2}}

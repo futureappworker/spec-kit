@@ -28,7 +28,7 @@ Skill 本身的建立與維護走另一條線：已有確認滿意的 Artifact �
 | [clarify-over-specs](.agents/skills/clarify-over-specs/SKILL.md) | 在 `/specify` 寫完 `spec.md` 之後做專業需求澄清。`specify` 在狀態為 `Needs Clarification` 時以提問模式交給它；使用者也能直接要求提問或套用答案。先掃描規格覆蓋並依影響挑出最多五題，再委派 `clarify` 提問；使用者回答後，由這個 Skill 把答案寫回規格的對應章節。 |
 | [technical-research](.agents/skills/technical-research/SKILL.md) | 在 `/specify` 產出的 Feature Specification 之後執行，將可進入 planning 的規格推導成 `research.md` 與 `techstack.md`。`research.md` 聚焦技術決策、理由與替代方案；`techstack.md` 彙整採用、延後或不採用的技術堆疊與 planning 約束，不另列後續技術問題。選型資訊不足時把缺口交回使用者，且不得把這兩份文件標為 Ready for Planning。 |
 | [system-analysis](.agents/skills/system-analysis/SKILL.md) | 依 Feature Specification、同目錄 `research.md` 與 `techstack.md` 產出並執行 `plan.md` 中的系統分析規劃。先盤點技術端點與系統介面，再依依賴關係排成分析 Wave，並委派 `ui-ux-plan`、`api-plan`、`data-plan` 完成對應介面分析。介面契約需要修改時，交回擁有該契約的 Planner Skill 修正。 |
-| [testplan](.agents/skills/testplan/SKILL.md) | 在系統介面分析完成後，依 `spec.md`、`plan.md` 與契約檔制定 `testplan.md`。以 User Story 為章，跨故事需求另成一章；每個可觀察的 FR 與 NFR 寫成原子案例，每個案例指向一個上游契約位址。各章自帶 TDD 順序。 |
+| [testplan](.agents/skills/testplan/SKILL.md) | 在系統介面分析完成後，依 `spec.md`、`plan.md` 與契約檔制定 `testplan.md`。使用者故事各成一章，其後每條有案例的全域 NFR 各成一章。使用者故事中可觀察的 FR 與 NFR，以及有可觀察結果的全域 NFR，寫成原子案例，每個案例指向一個上游契約位址。各章自帶 TDD 順序。全域功能需求、成功標準，以及沒有可觀察結果的全域 NFR，列為不列為案例。 |
 | [ui-ux-plan](.agents/skills/ui-ux-plan/SKILL.md) | 分析前端端點、瀏覽器互動、畫面狀態與使用者流程，依 Pencil 樣板 `templates/interface.pen` 產出可供 API 與資料規劃對齊的 UI/UX 介面分析。 |
 | [api-plan](.agents/skills/api-plan/SKILL.md) | 分析後端端點、API、WebSocket、服務狀態機與權威判定邊界，依 OpenAPI 樣板 `templates/openapi.yaml` 產出可供前端與資料規劃對齊的 API 介面分析。 |
 | [data-plan](.agents/skills/data-plan/SKILL.md) | 分析資料庫端點、持久化模型、查詢、快照與資料保留邊界，依 DBML 樣板 `templates/schema.dbml` 產出可供前端與 API 規劃對齊的資料介面分析。 |
